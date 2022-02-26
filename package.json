@@ -9,8 +9,11 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "test": "lerna run test",
     "server": "lerna exec --scope @gymfy/server -- pnpm dev",
-    "client": "lerna exec --scope @gymfy/client -- pnpm start"
+    "web": "lerna exec --scope @gymfy/web -- pnpm start"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
