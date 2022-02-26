@@ -1,0 +1,18 @@
+{
+  "name": "@gymfy/root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "server": "lerna exec --scope @gymfy/server -- pnpm dev",
+    "client": "lerna exec --scope @gymfy/client -- pnpm start"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

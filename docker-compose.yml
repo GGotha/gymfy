@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: "gymfy-mysql"
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      MYSQL_DATABASE: gymfy
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+
+  server:
+    image: node:14
+    command: yarn workspace @gymfy/server dev
+    ports:
+      - "127.0.0.1:3333:3333"
+    working_dir: /server
+    volumes:
+      - ./:/server
+    depends_on:
+      - mysql
+
+  client:
+    image: node:14
+    command: yarn workspace @gymfy/client start
+    ports:
+      - "127.0.0.1:3000:3000"
+    working_dir: /client
+    volumes:
+      - ./:/client
+    depends_on:
+      - server
