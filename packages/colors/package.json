@@ -1,0 +1,12 @@
+{
+  "name": "@gymfy/colors",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
