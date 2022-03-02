@@ -6,13 +6,15 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --exit-child src/app.ts",
-    "db:sync": "prisma migrate dev"
+    "db:sync": "prisma migrate dev",
+    "db:seed": "ts-node ./prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "prisma": "^3.10.0",
+    "ts-node": "^10.5.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.5"
   },

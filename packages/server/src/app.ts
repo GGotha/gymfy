@@ -4,6 +4,7 @@ import prisma from "./orm"
 import express from "express"
 import http from "http"
 import typeDefs from "./typeDefs"
+import resolvers from "./resolvers"
 
 const PORT = process.env.PORT
 
@@ -13,13 +14,19 @@ const server = http.createServer(app)
 async function startServer() {
   const graphQLServer = new ApolloServer({
     typeDefs,
-    resolvers: {
-      Query: {
-        allUsers: () => {
-          return prisma.user.findMany()
-        },
-      },
-    },
+    resolvers,
+    // resolvers: {
+    //   Query: {
+    //     allUsers: () => {
+    //       return prisma.user.findMany()
+    //     },
+    //   },
+    //   Mutation: {
+    //     authenticate: () => {
+    //       return { success: true }
+    //     },
+    //   },
+    // },
   })
 
   await graphQLServer.start()
@@ -33,4 +40,4 @@ async function startServer() {
 
 startServer()
 
-server.listen(PORT, () => console.log(`Server initialized on port ${PORT}`))
+server.listen(PORT, () => console.log(`Server initialized ons port ${PORT}`))

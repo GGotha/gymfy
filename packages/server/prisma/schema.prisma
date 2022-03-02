@@ -15,5 +15,20 @@ model User {
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
+  role Role @relation(fields: [id_role], references: [id])
+
+  id_role String
   @@map("users")
+}
+
+model Role {
+  id         String    @id @default(uuid())
+  name       String
+  active     Boolean
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+
+  users User[]
+  @@map("roles")
 }
