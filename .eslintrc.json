@@ -34,14 +34,14 @@
       }
     ],
     "quotes": "off",
-    "semi": "off",
+    "semi": "error",
     "prettier/prettier": [
       "error",
       {
         "printWidth": 100,
         "tabWidth": 2,
         "singleQuote": false,
-        "semi": false,
+        "semi": true,
         "useTabs": false
       }
     ]

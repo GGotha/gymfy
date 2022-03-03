@@ -15,6 +15,9 @@
     "server": "lerna exec --scope @gymfy/server -- pnpm dev",
     "web": "lerna exec --scope @gymfy/web -- pnpm start",
     "prepare": "husky install",
+    "format:all": "prettier --write .",
+    "format:web": "prettier --write packages/web",
+    "format:server": "prettier --write packages/server",
     "lint": "eslint \"**/*.{ts,tsx}\""
   },
   "devDependencies": {
