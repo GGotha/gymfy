@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --exit-child src/app.ts",
@@ -13,6 +16,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.21",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
     "prisma": "^3.10.0",
     "ts-node": "^10.5.0",
     "ts-node-dev": "^1.1.8",
@@ -21,8 +31,10 @@
   "dependencies": {
     "@prisma/client": "^3.10.0",
     "apollo-server-express": "^3.6.3",
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "graphql": "^16.3.0"
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1"
   }
 }

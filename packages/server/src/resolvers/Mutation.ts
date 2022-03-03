@@ -1,13 +1,6 @@
-import { User } from "@prisma/client"
-import {
-  AuthenticationError,
-  ForbiddenError,
-  ValidationError,
-  ApolloError,
-} from "apollo-server-express"
-import jwt from "jsonwebtoken"
-import prisma from "../orm"
+import { ApolloError, AuthenticationError, ForbiddenError } from "apollo-server-express"
 import bcrypt from "bcrypt"
+import prisma from "../orm"
 import { generateToken } from "../token"
 
 export const resolvers = {
@@ -22,7 +15,14 @@ export const resolvers = {
       password = await bcrypt.hash(password, 8)
 
       const role = await prisma.role.findFirst({ where: { name: "User" } })
-      const user = await prisma.user.create({ data: { id_role: role.id, name, email, password } })
+      const user = await prisma.user.create({
+        data: {
+          id_role: role.id,
+          name,
+          email,
+          password,
+        },
+      })
 
       return { success: true, user, token: generateToken({ userId: user.id, role: user.id_role }) }
     } catch (err) {
@@ -34,7 +34,7 @@ export const resolvers = {
     }
   },
 
-  async authenticate(_, { email, password }) {
+  async authenticate(_, { email }) {
     const user = await prisma.user.findFirst({ where: { email } })
 
     if (!user) {

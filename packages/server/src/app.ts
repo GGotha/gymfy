@@ -1,12 +1,11 @@
-import "dotenv/config"
 import { ApolloServer } from "apollo-server-express"
-import prisma from "./orm"
+import "dotenv/config"
 import express from "express"
 import http from "http"
-import typeDefs from "./typeDefs"
 import resolvers from "./resolvers"
+import typeDefs from "./typeDefs"
 
-const PORT = process.env.PORT
+const { PORT } = process.env
 
 const app = express()
 const server = http.createServer(app)
@@ -15,18 +14,6 @@ async function startServer() {
   const graphQLServer = new ApolloServer({
     typeDefs,
     resolvers,
-    // resolvers: {
-    //   Query: {
-    //     allUsers: () => {
-    //       return prisma.user.findMany()
-    //     },
-    //   },
-    //   Mutation: {
-    //     authenticate: () => {
-    //       return { success: true }
-    //     },
-    //   },
-    // },
   })
 
   await graphQLServer.start()
@@ -40,4 +27,5 @@ async function startServer() {
 
 startServer()
 
+// eslint-disable-next-line no-console
 server.listen(PORT, () => console.log(`Server initialized ons port ${PORT}`))
