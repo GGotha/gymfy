@@ -2,8 +2,8 @@ import { ApolloServer } from "apollo-server-express";
 import "dotenv/config";
 import express from "express";
 import http from "http";
-import resolvers from "./resolvers";
-import typeDefs from "./typeDefs";
+import resolvers from "./graphql/resolvers";
+import typeDefs from "./graphql/typeDefs";
 
 const { PORT } = process.env;
 

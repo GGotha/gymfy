@@ -1,7 +1,7 @@
 import { ApolloError, AuthenticationError, ForbiddenError } from "apollo-server-express";
 import bcrypt from "bcrypt";
-import prisma from "../orm";
-import { generateToken } from "../token";
+import prisma from "../../orm";
+import { generateToken } from "../../token";
 
 export const resolvers = {
   async createUser(_, { name, email, password }) {
