@@ -1,0 +1,37 @@
+scalar Date
+scalar Json
+scalar Object
+
+type Mutation {
+  authenticate(email: String!, password: String!): ResponseUser!
+  createUser(name: String!, email: String!, password: String!): ResponseCreateUser!
+}
+
+type Query {
+  allUsers: ResponseGetUser!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  created_at: Date!
+  updated_at: Date
+}
+
+type ResponseGetUser {
+  success: Boolean!
+  user: User!
+}
+
+type ResponseUser {
+  success: Boolean!
+  user: User!
+  token: String!
+}
+
+type ResponseCreateUser {
+  success: Boolean!
+  user: User!
+  token: String!
+}

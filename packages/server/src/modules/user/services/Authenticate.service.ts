@@ -1,0 +1,3 @@
+class AuthenticateService {}
+
+export { AuthenticateService };
