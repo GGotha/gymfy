@@ -24,29 +24,33 @@ async function main() {
   });
 
   await prisma.user.upsert({
-    where: { email: "alice@prisma.io" },
+    where: { email: "user@gymfy.com.br" },
     update: {},
     create: {
       id_role: await (await prisma.role.findFirst({ where: { name: "User" } })).id,
-      email: "alice@prisma.io",
-      name: "Alice",
-      password: "123",
+      email: "user@gymfy.com.br",
+      name: "User",
+      password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",
     },
   });
 
   await prisma.user.upsert({
-    where: { email: "bob@prisma.io" },
+    where: { email: "admin@gymfy.com.br" },
     update: {},
     create: {
       id_role: await (await prisma.role.findFirst({ where: { name: "Administrator" } })).id,
-      email: "bob@prisma.io",
-      name: "Bob",
-      password: "123",
+      email: "admin@gymfy.com.br",
+      name: "Admin",
+      password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",
     },
   });
 }
 
 main()
+  .then(() => {
+    // eslint-disable-next-line no-console
+    console.log("Seeds was put on your database!");
+  })
   .catch((e) => {
     // eslint-disable-next-line no-console
     console.error(e);

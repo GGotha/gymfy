@@ -1,7 +1,8 @@
-import { ApolloError, AuthenticationError, ForbiddenError } from "apollo-server-express";
-import bcrypt from "bcrypt";
-import prisma from "../../../orm";
-import { generateToken, checkPassword } from "../../../token";
+import { ApolloError } from "apollo-server-express";
+import Errors from "../../../externals/errors";
+import { prisma } from "../../../externals/orm";
+import { AuthenticateService } from "../services";
+import { CreateService } from "../services/Create.service";
 
 const userResolvers = {
   Query: {
@@ -13,32 +14,14 @@ const userResolvers = {
   Mutation: {
     async createUser(_, { name, email, password }) {
       try {
-        const thisUserAlreadyExists = await prisma.user.findFirst({ where: { email } });
+        const response = await CreateService.execute({ name, email, password });
 
-        if (thisUserAlreadyExists) {
-          throw new ForbiddenError("This user already exists!");
-        }
+        const { user, token } = response;
 
-        password = await bcrypt.hash(password, 8);
-
-        const role = await prisma.role.findFirst({ where: { name: "User" } });
-        const user = await prisma.user.create({
-          data: {
-            id_role: role.id,
-            name,
-            email,
-            password,
-          },
-        });
-
-        return {
-          success: true,
-          user,
-          token: generateToken({ userId: user.id, role: user.id_role }),
-        };
+        return { success: true, user, token };
       } catch (err) {
-        if (err instanceof ForbiddenError) {
-          throw new ApolloError(err.message);
+        if (Errors.isManageableError(err)) {
+          return err;
         }
 
         throw new ApolloError("Internal Server Error, try again later!");
@@ -46,18 +29,19 @@ const userResolvers = {
     },
 
     async authenticate(_, { email, password }) {
-      const user = await prisma.user.findFirst({ where: { email } });
+      try {
+        const response = await AuthenticateService.execute({ email, password });
 
-      const isCorrectPassword = await checkPassword({
-        bodyPassword: password,
-        userPassword: user.password,
-      });
+        const { user, token } = response;
 
-      if (!user || !isCorrectPassword) {
-        throw new AuthenticationError("E-mail or password invalid");
+        return { success: true, user, token };
+      } catch (err) {
+        if (Errors.isManageableError(err)) {
+          return err;
+        }
+
+        throw new ApolloError("Internal Server Error, try again later!");
       }
-
-      return { success: true, user, token: generateToken({ userId: user.id, role: user.id_role }) };
     },
   },
 };
