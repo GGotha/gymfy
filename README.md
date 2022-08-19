@@ -17,7 +17,7 @@
 - Tailwind CSS
 - GraphQL
 - Storybook
-- Test E2E (Cypress)
+- Test E2E with Cypress
 - Unit Test (?)
 - New Component Structure
   - Button
@@ -32,4 +32,5 @@
 - Typescript ✔️
 - GraphQL ✔️
 - Prisma ✔️
-- Unit Test (jest)
+- Unit Test with Jest
+- Documentation with Swagger

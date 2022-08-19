@@ -1,18 +1,19 @@
 version: "3"
 
 services:
-  mysql:
-    container_name: "gymfy-mysql"
+  gymfy_database:
+    container_name: "gymfy-database"
     image: mysql:5.7
     restart: always
     ports:
       - 127.0.0.1:3306:3306
     environment:
-      MYSQL_DATABASE: gymfy
+      MYSQL_DATABASE: gymfy_development
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
 
-  server:
+  gymfy_server:
+    container_name: "gymfy-server"
     image: node:14
     command: yarn workspace @gymfy/server dev
     ports:
@@ -21,15 +22,16 @@ services:
     volumes:
       - ./:/server
     depends_on:
-      - mysql
+      - gymfy_database
 
-  web:
+  gymfy_web:
+    container_name: "gymfy-web"
     image: node:14
-    command: yarn workspace @gymfy/web start
+    command: yarn workspace @gymfy/web dev
     ports:
       - "127.0.0.1:3000:3000"
     working_dir: /web
     volumes:
       - ./:/web
     depends_on:
-      - server
+      - gymfy_server
