@@ -8,8 +8,8 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "tsc && copyfiles ./src/**/*.graphql ./dist",
-    "dev": "ts-node-dev --respawn --exit-child --watch ./src/**/*.schema.graphql --transpile-only src/app.ts --ignore-watch ./node_modules",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --exit-child --transpile-only src/app.ts --ignore-watch ./node_modules",
     "start:development": "ts-node src/app.ts --ignore-watch ./node_modules",
     "start:production": "export NODE_ENV=production && node dist/app.js --ignore-watch ./node_modules",
     "db:sync": "prisma migrate dev",
@@ -45,11 +45,13 @@
     "@graphql-tools/schema": "^8.3.2",
     "@graphql-tools/utils": "^8.6.2",
     "@prisma/client": "^3.13.0",
-    "apollo-server-express": "^3.6.3",
+    "apollo-server": "^3.10.1",
     "bcrypt": "^5.0.1",
+    "class-validator": "^0.13.2",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "graphql": "^16.3.0",
-    "jsonwebtoken": "^8.5.1"
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
   }
 }

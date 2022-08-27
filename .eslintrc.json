@@ -20,9 +20,13 @@
     }
   },
   "rules": {
+    "indent": "off",
+    "object-curly-newline": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "operator-linebreak": "off",
-    "@typescript-eslint/explicit-member-accessibility": "warn",
+    "camelcase": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
     "class-methods-use-this": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",

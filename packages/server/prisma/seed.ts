@@ -27,7 +27,7 @@ async function main() {
     where: { email: "user@gymfy.com.br" },
     update: {},
     create: {
-      id_role: await (await prisma.role.findFirst({ where: { name: "User" } })).id,
+      id_role: await (await prisma.role.findFirst({ where: { name: "User" } }))!.id,
       email: "user@gymfy.com.br",
       name: "User",
       password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",
@@ -38,7 +38,7 @@ async function main() {
     where: { email: "admin@gymfy.com.br" },
     update: {},
     create: {
-      id_role: await (await prisma.role.findFirst({ where: { name: "Administrator" } })).id,
+      id_role: await (await prisma.role.findFirst({ where: { name: "Administrator" } }))!.id,
       email: "admin@gymfy.com.br",
       name: "Admin",
       password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",

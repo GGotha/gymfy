@@ -1,38 +1,27 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { ApolloServer } from "apollo-server-express";
+import "reflect-metadata";
+
+import { ApolloServer } from "apollo-server";
 import "dotenv/config";
-import express from "express";
-import http from "http";
-import resolvers from "./resolvers";
-import typeDefs from "./schemas";
+import path from "path";
+import { buildSchema } from "type-graphql";
+import { UserResolver } from "./resolvers/UserResolver";
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
-const { PORT } = process.env;
-
-const app = express();
-const server = http.createServer(app);
-
-async function startServer() {
-  const schema = makeExecutableSchema({
-    resolvers,
-    typeDefs,
+async function main() {
+  const schema = await buildSchema({
+    resolvers: [UserResolver],
+    emitSchemaFile: path.resolve(__dirname, "schema.gql"),
   });
 
-  const graphQLServer = new ApolloServer({
+  const server = new ApolloServer({
     schema,
   });
 
-  await graphQLServer.start();
+  const { port } = await server.listen();
 
-  graphQLServer.applyMiddleware({
-    app,
-    path: "/api/graphql",
-    cors: false,
-  });
+  // eslint-disable-next-line no-console
+  console.log(`🚀 Server initialized ons port ${port} 🚀`);
 }
 
-startServer();
-
-// eslint-disable-next-line no-console
-server.listen(PORT, () => console.log(`Server initialized ons port ${PORT}`));
+main();
