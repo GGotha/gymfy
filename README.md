@@ -1,20 +1,21 @@
 # Gymfy
 
-
 ## Technologies that I want to use:
 
 ### General
-- Turborepo
+
+- Turborepo ✔️
 - Eslint ✔️
 - Prettier ✔️
-- Docker Compose
+- Docker Compose ✔️
 - Husky ✔️
 - Lint Staged ✔️
 
 ### Web
+
 - Typescript ✔️
-- Vite
-- Tailwind CSS
+- Vite ✔️
+- Tailwind CSS ✔️
 - GraphQL
 - Storybook
 - Test E2E with Cypress
@@ -29,6 +30,7 @@
     - index.tsx
 
 ### Server
+
 - Typescript ✔️
 - GraphQL ✔️
 - Prisma ✔️
