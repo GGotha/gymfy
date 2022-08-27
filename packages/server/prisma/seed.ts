@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -30,7 +31,7 @@ async function main() {
       id_role: await (await prisma.role.findFirst({ where: { name: "User" } }))!.id,
       email: "user@gymfy.com.br",
       name: "User",
-      password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",
+      password: await bcrypt.hash("123mudar", 8),
     },
   });
 
@@ -41,7 +42,7 @@ async function main() {
       id_role: await (await prisma.role.findFirst({ where: { name: "Administrator" } }))!.id,
       email: "admin@gymfy.com.br",
       name: "Admin",
-      password: "$2b$08$7l609TK80Phx8Jg3ReWV7eZDPuHc.36JQvdE3bMC4IoSxBLliY3Zi",
+      password: await bcrypt.hash("123mudar", 8),
     },
   });
 }

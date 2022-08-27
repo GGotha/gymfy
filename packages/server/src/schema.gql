@@ -3,6 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Checkin {
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+  user: User!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -10,11 +17,12 @@ scalar DateTime
 
 type Mutation {
   authenticate(email: String!, password: String!): UserResponse!
+  createCheckin: Checkin!
   createUser(email: String!, name: String!, password: String!): UserResponse!
 }
 
 type Query {
-  users: String!
+  query: String!
 }
 
 type Role {

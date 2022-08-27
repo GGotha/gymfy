@@ -1,19 +1,14 @@
 import { AuthenticationError } from "apollo-server";
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Resolver } from "type-graphql";
 
 import bcrypt from "bcrypt";
 
-import { generateToken, isCorrectPassword } from "../core/token";
-import { prisma } from "../externals/orm";
-import { UserResponse } from "./UserResponse";
+import { generateToken, isCorrectPassword } from "../../../core/token";
+import { prisma } from "../../../externals/orm";
+import { UserResponse } from "../../types/UserResponse";
 
 @Resolver()
 export class UserResolver {
-  @Query(() => String)
-  async users() {
-    return "Usersaaa";
-  }
-
   @Mutation(() => UserResponse)
   async createUser(
     @Arg("email") email: string,
