@@ -62,6 +62,7 @@ importers:
       reflect-metadata: ^0.1.13
       ts-node: ^10.5.0
       ts-node-dev: ^1.1.8
+      tsconfig-paths: ^4.1.0
       type-graphql: ^1.1.1
       typescript: ^4.5.5
     dependencies:
@@ -95,6 +96,7 @@ importers:
       prisma: 3.15.2
       ts-node: 10.9.1_rjeweiubtb4rapvh37doyymzuq
       ts-node-dev: 1.1.8_typescript@4.6.2
+      tsconfig-paths: 4.1.0
       typescript: 4.6.2
 
   packages/web:
@@ -4852,7 +4854,7 @@ packages:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.6
     dev: true
 
   /json5/2.2.1:
@@ -6563,7 +6565,16 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
-      minimist: 1.2.5
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-paths/4.1.0:
+    resolution: {integrity: sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow==}
+    engines: {node: '>=6'}
+    dependencies:
+      json5: 2.2.1
+      minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
 

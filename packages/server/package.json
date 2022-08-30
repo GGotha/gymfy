@@ -9,8 +9,8 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "dev": "ts-node-dev --respawn --exit-child --transpile-only src/app.ts --ignore-watch ./node_modules",
-    "start:development": "ts-node src/app.ts --ignore-watch ./node_modules",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --exit-child --transpile-only src/app.ts --ignore-watch ./node_modules",
+    "start:development": "ts-node -r tsconfig-paths/register src/app.ts --ignore-watch ./node_modules",
     "start:production": "export NODE_ENV=production && node dist/app.js --ignore-watch ./node_modules",
     "db:sync": "prisma migrate dev",
     "db:seed": "ts-node ./prisma/seed.ts",
@@ -37,6 +37,7 @@
     "prisma": "^3.13.0",
     "ts-node": "^10.5.0",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.5.5"
   },
   "dependencies": {
