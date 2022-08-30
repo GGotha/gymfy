@@ -14,8 +14,9 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": ["./packages/server/tsconfig.json", "./packages/web/tsconfig.json"]
       }
     }
   },
@@ -27,6 +28,7 @@
     "operator-linebreak": "off",
     "camelcase": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "class-methods-use-this": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",

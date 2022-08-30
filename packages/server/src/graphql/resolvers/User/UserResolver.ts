@@ -3,9 +3,9 @@ import { Arg, Mutation, Resolver } from "type-graphql";
 
 import bcrypt from "bcrypt";
 
-import { generateToken, isCorrectPassword } from "../../../core/token";
-import { prisma } from "../../../externals/orm";
-import { UserResponse } from "../../types/UserResponse";
+import { generateToken, isCorrectPassword } from "~/core/token";
+import { prisma } from "~/externals/orm";
+import { UserResponse } from "~/graphql/types/UserResponse";
 
 @Resolver()
 export class UserResolver {

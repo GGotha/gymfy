@@ -1,7 +1,7 @@
 import { verify } from "jsonwebtoken";
 import { AuthChecker } from "type-graphql";
+import { prisma } from "~/externals/orm";
 import { TOKEN_SECRET } from "./constants";
-import { prisma } from "../externals/orm";
 
 interface TokenPayload {
   iat: number;
@@ -11,7 +11,7 @@ interface TokenPayload {
   };
 }
 
-export const customAuthChecker: AuthChecker = async ({ context }: any, roles) => {
+const customAuthChecker: AuthChecker = async ({ context }: any, roles) => {
   const authHeader = context.req.headers.authorization;
 
   if (!authHeader) {
@@ -37,3 +37,5 @@ export const customAuthChecker: AuthChecker = async ({ context }: any, roles) =>
     return false;
   }
 };
+
+export { customAuthChecker };

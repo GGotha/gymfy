@@ -1,6 +1,7 @@
 import { Authorized, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { prisma } from "../../../externals/orm";
-import { Checkin } from "../../models";
+
+import { prisma } from "~/externals/orm";
+import { Checkin } from "~/graphql/models";
 
 @Resolver()
 export class CheckinResolver {

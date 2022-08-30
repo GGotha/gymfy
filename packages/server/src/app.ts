@@ -4,8 +4,9 @@ import { ApolloServer } from "apollo-server";
 import "dotenv/config";
 import path from "path";
 import { buildSchema } from "type-graphql";
-import { UserResolver, CheckinResolver } from "./graphql/resolvers";
-import { customAuthChecker } from "./core/customAuthChecker";
+
+import { CheckinResolver, UserResolver } from "~/graphql/resolvers";
+import { customAuthChecker } from "~/core/customAuthChecker";
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
