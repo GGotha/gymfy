@@ -22,6 +22,7 @@
   },
   "rules": {
     "indent": "off",
+    "arrow-body-style": "off",
     "object-curly-newline": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
