@@ -16,6 +16,7 @@
 - Typescript ✔️
 - Vite ✔️
 - Tailwind CSS ✔️
+- React-query
 - GraphQL
 - Storybook
 - Test E2E with Cypress
@@ -35,4 +36,3 @@
 - GraphQL ✔️
 - Prisma ✔️
 - Unit Test with Jest
-- Documentation with Swagger
