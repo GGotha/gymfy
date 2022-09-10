@@ -6,7 +6,7 @@ const HomePageFooterComponent: React.FC = () => (
       <div className="border-[3px] mr-4"></div>
       <div className="flex flex-col">
         <h1 className="text-white uppercase font-bold text-sm">Any Queries? Visit us on</h1>
-        <h1 className="text-white font-bold mt-3 text-lg">www.nickelfox.com</h1>
+        <h1 className="text-white font-bold mt-3 text-lg">www.gustavogotha.com.br</h1>
       </div>
     </div>
     <div className="flex gap-6 mt-8 ml-5">
