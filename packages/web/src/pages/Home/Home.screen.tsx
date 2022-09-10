@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { HomePageFooterComponent } from "~/components/HomePageFooter";
 import { LikeAndFollowTextComponent } from "~/components/LikeAndFollowText";
 import { ButtonComponent } from "~/components/Button";
-import { background, logoIcon } from "~/assets/images";
+import { logoIcon } from "~/assets/images";
 
 const HomeScreen: React.FC = () => {
   const navigate = useNavigate();
-  const styles = `bg-[url('${background}')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full min-h-[900px]`;
+  const styles = `bg-[url('./assets/images/background.png')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full min-h-[900px]`;
 
   return (
     <>
