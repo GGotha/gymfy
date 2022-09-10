@@ -1,7 +1,4 @@
-import facebook from "~/assets/facebook.svg";
-import instagram from "~/assets/instagram.svg";
-import linkedin from "~/assets/linkedin.svg";
-import twitter from "~/assets/twitter.svg";
+import { facebookIcon, instagramIcon, linkedinIcon, twitterIcon } from "~/assets/images";
 
 const HomePageFooterComponent: React.FC = () => (
   <div>
@@ -13,10 +10,10 @@ const HomePageFooterComponent: React.FC = () => (
       </div>
     </div>
     <div className="flex gap-6 mt-8 ml-5">
-      <img src={instagram} width={20.48} height={20.48} alt="instagram" />
-      <img src={twitter} width={22.55} height={18.33} alt="twitter" />
-      <img src={linkedin} width={20.9} height={19.97} alt="linkedin" />
-      <img src={facebook} width={9.46} height={19.71} alt="facebook" />
+      <img src={instagramIcon} width={20.48} height={20.48} alt="instagram" />
+      <img src={twitterIcon} width={22.55} height={18.33} alt="twitter" />
+      <img src={linkedinIcon} width={20.9} height={19.97} alt="linkedin" />
+      <img src={facebookIcon} width={9.46} height={19.71} alt="facebook" />
     </div>
   </div>
 );

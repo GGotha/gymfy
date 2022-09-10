@@ -1,10 +1,14 @@
 type ButtonProps = {
-  children: string;
+  children: any;
   hasBackgroundShadow?: boolean;
   hasBounceAnimation?: boolean;
   backgroundColor: string;
   textColor?: string;
   backgroundColorHover?: string;
+  width?: string;
+  height?: string;
+  borderRadius?: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const ButtonComponent: React.FC<ButtonProps> = ({
@@ -14,26 +18,34 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   backgroundColor,
   textColor = "text-white",
   backgroundColorHover = "none",
+  width = "w-32",
+  height = "h-10",
+  borderRadius = "rounded-lg",
+  onClick,
 }) => {
-  const buttonDefaultStyles = "w-32 h-10 rounded-lg shadow-xl text-base duration-300 rounded-lg";
+  const defaultStyles = "rounded-lg shadow-xl text-base duration-300 ";
 
   const styleHasBackgroundShadow = hasBackgroundShadow ? "shadow-zinc-900" : "";
   const styleHasBounceAnimation = hasBounceAnimation ? "animate-bounce" : "";
   const styleBackgroundColorHover = backgroundColorHover !== "none" ? "hover:bg-black" : "";
 
   const style = `
-    ${buttonDefaultStyles}
-    ${styleHasBounceAnimation} 
+    ${defaultStyles}
+    ${styleHasBounceAnimation}
     ${textColor}
     ${backgroundColor}
     ${styleBackgroundColorHover}
     ${styleHasBackgroundShadow}
-    bg-black
+    ${width}
+    ${height}
+    ${borderRadius}
   `;
 
   return (
     <>
-      <button className={style}>{children}</button>
+      <button className={style} onClick={onClick}>
+        {children}
+      </button>
     </>
   );
 };
