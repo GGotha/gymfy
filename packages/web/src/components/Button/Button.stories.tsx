@@ -6,5 +6,10 @@ export default {
 };
 
 export const BackgroundColor = () => {
-  return <Button backgroundColor="bg-zinc-900">Entrar</Button>;
+  return (
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    <Button onClick={() => {}} backgroundColor="bg-zinc-900">
+      Entrar
+    </Button>
+  );
 };
