@@ -35,10 +35,10 @@ const SidebarComponent: React.FC = () => {
         <div className="mt-6" />
         <OptionSidebarComponent name="Auctions" icon={hammerIcon} />
         <div className="mt-6" />
-        <OptionSidebarComponent name="Inbox" icon={mailIcon} />
+        <OptionSidebarComponent name="Inbox" icon={mailIcon} hasNotifications />
         <div className="mt-6" />
         <OptionSidebarComponent name="Favorites" icon={heartIcon} />
-        <div className="border-[1px] border-sidebarDivider w-full my-8" />
+        <div className="border border-sidebarDivider w-full my-8" />
         <OptionSidebarComponent
           name="Wallets"
           icon={plusIcon}
@@ -51,7 +51,7 @@ const SidebarComponent: React.FC = () => {
         <OptionSidebarComponent name="Ethereum" icon={ethereumIcon} />
         <div className="mt-6" />
         <OptionSidebarComponent name="USD Coin" icon={usdcoinIcon} />
-        <div className="border-[1px] border-sidebarDivider w-full my-8" />
+        <div className="border border-sidebarDivider w-full my-8" />
         <OptionSidebarComponent name="Settings" icon={settingsIcon} />
         <div className="mt-6" />
         <OptionSidebarComponent name="Help & FAQ" icon={helpIcon} />

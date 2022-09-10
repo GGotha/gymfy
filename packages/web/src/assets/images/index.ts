@@ -16,3 +16,7 @@ export { default as plusIcon } from "./plus.svg";
 export { default as reactIcon } from "./react.svg";
 export { default as twitterIcon } from "./twitter.svg";
 export { default as usdcoinIcon } from "./usd_coin.svg";
+export { default as searchIcon } from "./search.svg";
+export { default as chatIcon } from "./chat.svg";
+export { default as bellIcon } from "./bell.svg";
+export { default as profile } from "./profile.webp";

@@ -23,7 +23,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   borderRadius = "rounded-lg",
   onClick,
 }) => {
-  const defaultStyles = "rounded-lg shadow-xl text-base duration-300 ";
+  const defaultStyles = "rounded-lg shadow-xl text-base duration-300 min-h-[40px]";
 
   const styleHasBackgroundShadow = hasBackgroundShadow ? "shadow-zinc-900" : "";
   const styleHasBounceAnimation = hasBounceAnimation ? "animate-bounce" : "";
