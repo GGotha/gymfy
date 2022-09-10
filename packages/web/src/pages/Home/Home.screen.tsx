@@ -1,8 +1,8 @@
 import { HomePageFooterComponent } from "~/components/HomePageFooter";
 import { LikeAndFollowTextComponent } from "~/components/LikeAndFollowText";
+import { ButtonComponent } from "~/components/Button";
 
 import logo from "~/assets/logo.svg";
-import { ReactNode } from "react";
 
 const HomeScreen: React.FC = () => {
   return (
@@ -15,9 +15,13 @@ const HomeScreen: React.FC = () => {
                 <img src={logo} alt="" width={50} />
               </div>
 
-              <button className="animate-bounce px-6 py-2 w-32 h-10 text-sm text-white transition-colors duration-300 bg-zinc-900 rounded-full shadow-xl hover:bg-black shadow-zinc-900">
+              <ButtonComponent
+                backgroundColor="bg-zinc-900"
+                backgroundColorHover="hover:bg-black"
+                hasBounceAnimation
+              >
                 Entrar
-              </button>
+              </ButtonComponent>
             </div>
             <div className="w-1/2 mt-14">
               <LikeAndFollowTextComponent />
