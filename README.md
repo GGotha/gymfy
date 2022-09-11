@@ -7,10 +7,10 @@
 - Virtual Coin (without web3 integration)
 - Marketplace v1 (without web3 integration)
 - Integrate with Metamask
-- GymfyCoin
+- GymfyCoin (web3 integration)
 - Marketplace v2 (web3 integration)
 
-## Technologies that I want to use:
+## Technologies:
 
 ### General
 
