@@ -1,5 +1,15 @@
 # Gymfy
 
+## Releases
+
+- Home ✔️
+- Dashboard
+- Virtual Coin (without web3 integration)
+- Marketplace v1 (without web3 integration)
+- Integrate with Metamask
+- GymfyCoin
+- Marketplace v2 (web3 integration)
+
 ## Technologies that I want to use:
 
 ### General
@@ -18,10 +28,10 @@
 - Tailwind CSS ✔️
 - React-query
 - GraphQL
-- Storybook
+- Storybook ✔️
 - Test E2E with Cypress
 - Unit Test (?)
-- New Component Structure
+- New Component Structure ✔️
   - Button
     - Button.stories.tsx
     - Button.test.tsx
