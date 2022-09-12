@@ -23,9 +23,9 @@ type SidebarListProps = {
 enum SidebarEnum {
   dashboard = "Início",
   marketplace = "Mercado",
-  inbox = "Caixa de entrada",
+  inbox = "Transações",
   favorites = "Favoritos",
-  wallets = "Carteias",
+  wallets = "Carteiras",
   bitcoin = "Bitcoin",
   ethereum = "Ethereum",
   usdCoin = "USD Coin",
