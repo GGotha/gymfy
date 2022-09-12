@@ -5,6 +5,7 @@ type OptionSidebarProps = {
   iconHeight?: string;
   isDashboard?: boolean;
   hasNotifications?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
@@ -14,9 +15,14 @@ const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
   iconHeight = "h-[25px]",
   isDashboard = false,
   hasNotifications = false,
+  onClick,
 }) => {
   const imageDefaultStyles = "ml-6 mr-4";
   const imageStyle = `${iconWidth} ${iconHeight} ${imageDefaultStyles}`;
+
+  const backgroundStyle = `flex w-full items-center cursor-pointer ${
+    isDashboard ? "bg-gradient-to-bl from-[#EB001B] to-[#0042FF] rounded-lg h-14" : ""
+  }`;
 
   const textStyle = `
   ${
@@ -27,7 +33,7 @@ const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
 
   return (
     <>
-      <div className="flex w-full items-center cursor-pointer">
+      <div className={backgroundStyle} onClick={onClick}>
         <div className="w-16">
           <img src={icon} alt={imageAlt ?? ""} className={imageStyle} />
         </div>
@@ -35,7 +41,7 @@ const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
       </div>
       {hasNotifications ? (
         <div className="relative">
-          <span className="animate-ping right-14 bottom-5 absolute rounded-full h-3 w-3 bg-[#F8961C]"></span>
+          <span className="animate-ping right-14 bottom-5 absolute rounded-full h-3 w-3 bg-[#F8961C]" />
         </div>
       ) : (
         <div></div>
