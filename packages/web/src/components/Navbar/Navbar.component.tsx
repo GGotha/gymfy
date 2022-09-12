@@ -7,7 +7,7 @@ const NavbarComponent: React.FC = () => {
         <div className="relative">
           <img src={searchIcon} alt="" className="absolute right-5 bottom-0 top-3" />
           <input
-            placeholder="Search"
+            placeholder="Procurar"
             type="text"
             className="px-6 h-[44px] bg-white bg-opacity-5 rounded-lg text-[#A2A3A4] placeholder:text-[#A2A3A4] focus:outline-none"
           />

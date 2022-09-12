@@ -20,3 +20,7 @@ export { default as searchIcon } from "./search.svg";
 export { default as chatIcon } from "./chat.svg";
 export { default as bellIcon } from "./bell.svg";
 export { default as profile } from "./profile.webp";
+export { default as increaseIcon } from "./increase.svg";
+export { default as decreaseIcon } from "./decrease.svg";
+export { default as graphIncrease } from "./graphIncrease.svg";
+export { default as graphDecrease } from "./graphDecrease.svg";

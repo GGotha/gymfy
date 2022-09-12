@@ -1,5 +1,7 @@
 import { NavbarComponent } from "~/components/Navbar";
 import { SidebarComponent } from "~/components/Sidebar";
+import CardComponent from "~/components/Card/Card.component";
+import { CardWalletComponent } from "~/components/CardWallet";
 
 const DashboardScreen: React.FC = () => {
   return (
@@ -12,7 +14,12 @@ const DashboardScreen: React.FC = () => {
           <NavbarComponent />
         </div>
         <div className="invisible"></div>
-        <div className="bg-black"></div>
+        <div className="bg-black bg-[url('./assets/images/background.png')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full min-h-[900px] p-8">
+          <h1 className="text-white text-2xl font-saira font-semibold mb-5">Minha carteira</h1>
+          <CardComponent>
+            <CardWalletComponent />
+          </CardComponent>
+        </div>
       </div>
     </>
   );

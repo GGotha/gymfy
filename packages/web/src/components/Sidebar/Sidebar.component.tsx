@@ -21,16 +21,16 @@ type SidebarListProps = {
 };
 
 enum SidebarEnum {
-  dashboard = "Dashboard",
-  marketplace = "Marketplace",
-  inbox = "Inbox",
-  favorites = "Favorites",
-  wallets = "Wallets",
+  dashboard = "Início",
+  marketplace = "Mercado",
+  inbox = "Caixa de entrada",
+  favorites = "Favoritos",
+  wallets = "Carteias",
   bitcoin = "Bitcoin",
   ethereum = "Ethereum",
   usdCoin = "USD Coin",
-  settings = "Settings",
-  helpFaq = "Help & FAQ",
+  settings = "Configurações",
+  helpFaq = "Ajuda",
 }
 
 const SIDEBAR_LIST: Array<SidebarListProps> = [
