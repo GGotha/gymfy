@@ -8,6 +8,6 @@ export default {
 export const BackgroundColor = () => {
   return (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    <CardWallet>Entrar</CardWallet>
+    <CardWallet />
   );
 };
