@@ -5,3 +5,5 @@ build
 coverage
 jest.config.js
 *.generated.ts
+generated
+packages/web/src/generated

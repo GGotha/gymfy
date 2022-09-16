@@ -5,9 +5,14 @@ import { Checkin } from "~/graphql/models";
 
 @Resolver()
 export class CheckinResolver {
-  @Query(() => String)
-  async query() {
-    return "query";
+  @Query(() => Checkin)
+  async getCheckin() {
+    const checkin = await prisma.checkin.findFirst({
+      where: { id: "0c430434-f44f-4c0e-a907-842c51504b99" },
+      include: { user: true },
+    });
+
+    return checkin;
   }
 
   @Authorized("User")

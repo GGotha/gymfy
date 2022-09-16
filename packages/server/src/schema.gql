@@ -22,7 +22,7 @@ type Mutation {
 }
 
 type Query {
-  query: String!
+  getCheckin: Checkin!
 }
 
 type Role {
