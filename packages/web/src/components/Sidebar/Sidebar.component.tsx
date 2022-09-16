@@ -58,6 +58,7 @@ const SidebarComponent: React.FC = () => {
         {SIDEBAR_LIST.map((option, index: number) => (
           <>
             <OptionSidebarComponent
+              key={index}
               name={option.name}
               icon={option.icon}
               onClick={() => setCurrentIndex(index)}

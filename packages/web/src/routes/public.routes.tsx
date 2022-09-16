@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomeScreen } from "./pages/Home";
-import { DashboardScreen } from "./pages/Dashboard";
-import { LoginScreen } from "./pages/Login";
+import { HomeScreen } from "~/pages/Home";
+import { DashboardScreen } from "~/pages/Dashboard";
+import { LoginScreen } from "~/pages/Login";
 
-const RoutesComponent: React.FC = () => (
+const PublicRoutes: React.FC = () => (
   <>
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const RoutesComponent: React.FC = () => (
   </>
 );
 
-export default RoutesComponent;
+export default PublicRoutes;

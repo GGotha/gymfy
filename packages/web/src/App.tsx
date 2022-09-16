@@ -1,9 +1,9 @@
-import RoutesComponent from "~/routes";
+import PublicRoutes from "~/routes/public.routes";
 
 function App() {
   return (
     <>
-      <RoutesComponent />
+      <PublicRoutes />
     </>
   );
 }

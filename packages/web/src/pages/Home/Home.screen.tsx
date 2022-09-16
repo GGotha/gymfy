@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
+import { logoIcon } from "~/assets/images";
+import { ButtonComponent } from "~/components/Button";
 import { HomePageFooterComponent } from "~/components/HomePageFooter";
 import { LikeAndFollowTextComponent } from "~/components/LikeAndFollowText";
-import { ButtonComponent } from "~/components/Button";
-import { logoIcon, wallpaper } from "~/assets/images";
 
 const HomeScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const HomeScreen: React.FC = () => {
                 backgroundColorHover="hover:bg-zinc-900"
                 hasBounceAnimation
                 onClick={() => {
-                  navigate("/dashboard");
+                  navigate("/login");
                 }}
               >
                 Entrar

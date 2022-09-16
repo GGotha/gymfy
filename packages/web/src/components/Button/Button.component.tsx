@@ -8,7 +8,8 @@ type ButtonProps = {
   width?: string;
   height?: string;
   borderRadius?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 };
 
 const ButtonComponent: React.FC<ButtonProps> = ({
@@ -43,7 +44,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
 
   return (
     <>
-      <button className={style} onClick={onClick}>
+      <button className={style} onClick={onClick} type="submit">
         {children}
       </button>
     </>

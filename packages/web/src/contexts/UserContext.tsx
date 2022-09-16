@@ -1,0 +1,48 @@
+import { createContext, useCallback, useState } from "react";
+import { token as tokenDomain, user as userDomain } from "~/globals/Domains";
+
+type UserState = {
+  user: object;
+  token: string;
+};
+
+type UserContextType = {
+  user: object;
+  signIn(data: UserState): Promise<void>;
+  signOut(): void;
+};
+
+export const UserContext = createContext<UserContextType>({} as UserContextType);
+
+export const UserProvider = ({ children }: any) => {
+  const [data, setData] = useState<UserState>(() => {
+    const token = localStorage.getItem(tokenDomain);
+    const user = localStorage.getItem(userDomain);
+
+    if (token && user) {
+      return { token, user: JSON.parse(user) };
+    }
+
+    return {} as UserState;
+  });
+
+  const signIn = useCallback(async ({ user, token }: UserState) => {
+    localStorage.setItem(tokenDomain, token);
+    localStorage.setItem(userDomain, JSON.stringify(user));
+
+    setData({ token, user });
+  }, []);
+
+  const signOut = useCallback(() => {
+    localStorage.removeItem(tokenDomain);
+    localStorage.removeItem(userDomain);
+
+    setData({} as UserState);
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user: data!.user, signIn, signOut }}>
+      {children}
+    </UserContext.Provider>
+  );
+};

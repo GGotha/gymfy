@@ -25,3 +25,4 @@ export { default as decreaseIcon } from "./decrease.svg";
 export { default as graphIncrease } from "./graphIncrease.svg";
 export { default as graphDecrease } from "./graphDecrease.svg";
 export { default as wallpaper } from "./wallpaper.jpg";
+export { default as gymIcon } from "./gym-icon.svg";
