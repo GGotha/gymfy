@@ -14,9 +14,9 @@ const DashboardScreen: React.FC = () => {
           <NavbarComponent />
         </div>
         <div className="invisible"></div>
-        <div className="bg-[url('./assets/images/wallpaper-dashboard.jpg')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full">
+        <div className="bg-[url('./assets/images/wallpaper-dashboard.jpg')] bg-no-repeat bg-cover h-full 2xl:h-full w-full">
           <div className="bg-black bg-opacity-95 h-full w-full p-8 flex">
-            <div className="mr-32">
+            <div>
               <h1 className="text-white text-2xl font-saira font-semibold mb-5">Minha carteira</h1>
               <CardComponent>
                 <CardWalletComponent />
