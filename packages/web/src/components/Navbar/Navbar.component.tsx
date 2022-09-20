@@ -10,6 +10,7 @@ const NavbarComponent: React.FC = () => {
           <img src={searchIcon} alt="" className="absolute right-5 bottom-0 top-3" />
           <InputComponent placeholder="Procurar" />
         </div>
+
         <div className="flex items-center">
           <img src={chatIcon} alt="cursor" className="cursor-pointer" />
           <div className="relative cursor-pointer">

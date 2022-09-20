@@ -184,7 +184,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createUser",
+            "name": "register",
             "description": null,
             "args": [
               {

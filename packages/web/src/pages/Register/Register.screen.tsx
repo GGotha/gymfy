@@ -8,25 +8,26 @@ import { ButtonComponent } from "~/components/Button";
 import { CardComponent } from "~/components/Card";
 import { InputComponent } from "~/components/Input";
 import { LoaderComponent } from "~/components/Loader";
-import { useAuthenticateMutation } from "~/generated/graphql";
+import { useRegisterMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 
 const API_URL = `http://localhost:4000`;
 
-type LoginAuthenticate = {
+type RegisterType = {
+  name: string;
   email: string;
   password: string;
 };
 
 const graphQLClient = new GraphQLClient(API_URL);
-const LoginScreen: React.FC = () => {
+const RegisterScreen: React.FC = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<LoginAuthenticate>();
+  const { register, handleSubmit } = useForm<RegisterType>();
   const { signIn } = useAuth();
 
-  const { mutateAsync, isLoading, isSuccess } = useAuthenticateMutation(graphQLClient, {
+  const { mutateAsync, isLoading, isSuccess } = useRegisterMutation(graphQLClient, {
     onSuccess: (data) => {
-      const { user, token } = data.authenticate;
+      const { user, token } = data.register;
 
       signIn({ user, token });
 
@@ -38,10 +39,10 @@ const LoginScreen: React.FC = () => {
   });
 
   const onSubmit = useCallback(
-    (data: LoginAuthenticate) => {
-      const { email, password } = data;
+    (data: RegisterType) => {
+      const { name, email, password } = data;
 
-      mutateAsync({ email, password });
+      mutateAsync({ name, email, password });
     },
     [isSuccess],
   );
@@ -54,8 +55,10 @@ const LoginScreen: React.FC = () => {
             <div className="flex justify-center pt-10">
               <img src={gymfyIcon} alt="" width={70} />
             </div>
-            <div className="flex items-center flex-col h-full px-5 pt-20">
+            <div className="flex items-center flex-col h-full px-5 pt-10">
               <form onSubmit={handleSubmit(onSubmit)}>
+                <InputComponent placeholder="Nome" type="name" props={{ ...register("name") }} />
+                <div className="my-2" />
                 <InputComponent
                   placeholder="E-mail"
                   type="email"
@@ -70,8 +73,8 @@ const LoginScreen: React.FC = () => {
                 <div className="mb-5" />
                 <div className="w-full">
                   <ButtonComponent
-                    backgroundColor="bg-gradientOne"
-                    backgroundColorHover="hover:bg-zinc-900"
+                    backgroundColor="bg-gyGreen"
+                    backgroundColorHover="hover:bg-gradientOne"
                     hasBackgroundShadow={false}
                     width="w-full"
                   >
@@ -80,7 +83,7 @@ const LoginScreen: React.FC = () => {
                         <LoaderComponent />
                       </div>
                     ) : (
-                      "Entrar"
+                      "Cadastrar"
                     )}
                   </ButtonComponent>
                 </div>
@@ -88,13 +91,13 @@ const LoginScreen: React.FC = () => {
                   <h1 className="text-primaryGrey text-sm">
                     <span
                       onClick={() => {
-                        navigate("/register");
+                        navigate("/login");
                       }}
                       className="cursor-pointer underline"
                     >
                       Clique aqui
                     </span>{" "}
-                    para se cadastrar
+                    para voltar
                   </h1>
                 </div>
               </form>
@@ -106,4 +109,4 @@ const LoginScreen: React.FC = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

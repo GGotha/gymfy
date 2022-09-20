@@ -3,19 +3,25 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "~/hooks/useAuth";
 
 type ProtectedRouteProps = {
-  role: string;
+  roles: Array<string>;
   redirectPath?: string;
   children?: any;
 };
 
 export const ProtectedRoute = ({
-  role,
+  roles,
   redirectPath = "/login",
   children,
 }: ProtectedRouteProps) => {
   const { user } = useAuth();
 
-  if (!user || user?.role?.name.toLowerCase() !== role.toLowerCase()) {
+  const userRoleName = user?.role?.name.toLocaleLowerCase();
+
+  console.log("roles::", roles);
+  console.log("userRoleName::", userRoleName);
+  console.log(roles.includes(userRoleName));
+
+  if (!user || !roles.includes(userRoleName)) {
     return <Navigate to={redirectPath} replace />;
   }
 

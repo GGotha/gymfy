@@ -10,7 +10,7 @@ type MenuDropdownNavbarComponentProps = {
 };
 
 const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = ({ children }) => {
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = useCallback(() => {
@@ -37,7 +37,16 @@ const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = 
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {() => (
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center mb-5 mt-2">
+                    <h1 className="text-white">
+                      Olá <span className="text-white font-bold">{user.name}</span>
+                    </h1>
+                  </div>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {() => (
+                  <div className="flex justify-center items-center mb-1">
                     <CircleStackIcon className="h-5 fill-yellow-400 mr-2" aria-hidden="true" />
                     <h1 className="text-white">
                       0.0005 <span className="text-xs">gyc</span>

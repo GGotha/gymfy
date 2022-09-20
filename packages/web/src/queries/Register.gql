@@ -1,0 +1,21 @@
+mutation Register($name: String!, $password: String!, $email: String!) {
+  register(name: $name, password: $password, email: $email) {
+    user {
+      id
+      name
+      email
+      role {
+        id
+        name
+        active
+        created_at
+        updated_at
+        __typename
+      }
+      created_at
+      updated_at
+      __typename
+    }
+    token
+  }
+}

@@ -32,7 +32,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   authenticate: UserResponse;
   createCheckin: Checkin;
-  createUser: UserResponse;
+  register: UserResponse;
 };
 
 
@@ -42,7 +42,7 @@ export type MutationAuthenticateArgs = {
 };
 
 
-export type MutationCreateUserArgs = {
+export type MutationRegisterArgs = {
   email: Scalars['String'];
   name: Scalars['String'];
   password: Scalars['String'];
@@ -86,6 +86,15 @@ export type AuthenticateMutationVariables = Exact<{
 
 export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any } } } };
 
+export type RegisterMutationVariables = Exact<{
+  name: Scalars['String'];
+  password: Scalars['String'];
+  email: Scalars['String'];
+}>;
+
+
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any } } } };
+
 
 export const AuthenticateDocument = `
     mutation Authenticate($password: String!, $email: String!) {
@@ -121,5 +130,41 @@ export const useAuthenticateMutation = <
     useMutation<AuthenticateMutation, TError, AuthenticateMutationVariables, TContext>(
       ['Authenticate'],
       (variables?: AuthenticateMutationVariables) => fetcher<AuthenticateMutation, AuthenticateMutationVariables>(client, AuthenticateDocument, variables, headers)(),
+      options
+    );
+export const RegisterDocument = `
+    mutation Register($name: String!, $password: String!, $email: String!) {
+  register(name: $name, password: $password, email: $email) {
+    user {
+      id
+      name
+      email
+      role {
+        id
+        name
+        active
+        created_at
+        updated_at
+        __typename
+      }
+      created_at
+      updated_at
+      __typename
+    }
+    token
+  }
+}
+    `;
+export const useRegisterMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<RegisterMutation, TError, RegisterMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<RegisterMutation, TError, RegisterMutationVariables, TContext>(
+      ['Register'],
+      (variables?: RegisterMutationVariables) => fetcher<RegisterMutation, RegisterMutationVariables>(client, RegisterDocument, variables, headers)(),
       options
     );

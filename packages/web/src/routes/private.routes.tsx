@@ -2,15 +2,15 @@ import { DashboardScreen } from "~/pages/Dashboard";
 import { ProtectedRoute } from "~/routes/ProtectedRoutes";
 
 enum Roles {
-  ADMIN = "Admin",
-  USER = "User",
+  ADMINISTRATOR = "administrator",
+  USER = "user",
 }
 
 export const privateRoutes = [
   {
     path: "/dashboard",
     element: (
-      <ProtectedRoute role={Roles.USER}>
+      <ProtectedRoute roles={[Roles.USER, Roles.ADMINISTRATOR]}>
         <DashboardScreen />
       </ProtectedRoute>
     ),

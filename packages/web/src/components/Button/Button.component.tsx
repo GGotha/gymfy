@@ -28,7 +28,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
 
   const styleHasBackgroundShadow = hasBackgroundShadow ? "shadow-zinc-900" : "";
   const styleHasBounceAnimation = hasBounceAnimation ? "animate-bounce" : "";
-  const styleBackgroundColorHover = backgroundColorHover !== "none" ? "hover:bg-black" : "";
+  const styleBackgroundColorHover = backgroundColorHover !== "none" ? backgroundColorHover : "";
 
   const style = `
     ${defaultStyles}

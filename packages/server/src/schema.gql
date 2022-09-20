@@ -18,7 +18,7 @@ scalar DateTime
 type Mutation {
   authenticate(email: String!, password: String!): UserResponse!
   createCheckin: Checkin!
-  createUser(email: String!, name: String!, password: String!): UserResponse!
+  register(email: String!, name: String!, password: String!): UserResponse!
 }
 
 type Query {

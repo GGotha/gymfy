@@ -10,7 +10,7 @@ import { UserResponse } from "~/graphql/types/UserResponse";
 @Resolver()
 export class UserResolver {
   @Mutation(() => UserResponse)
-  async createUser(
+  async register(
     @Arg("email") email: string,
     @Arg("password") password: string,
     @Arg("name") name: string,
@@ -31,6 +31,7 @@ export class UserResolver {
         email,
         password,
       },
+      include: { role: true },
     });
 
     return {
