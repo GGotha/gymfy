@@ -12,6 +12,8 @@
     "codegen": "graphql-codegen --config codegen.yml && echo '// @ts-nocheck' | cat - src/generated/graphql.tsx  > temp && mv temp src/generated/graphql.tsx"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.2",
+    "@heroicons/react": "^2.0.11",
     "@tanstack/react-query": "^4.3.4",
     "graphql": "^15.3.0",
     "graphql-request": "^5.0.0",

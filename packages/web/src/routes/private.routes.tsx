@@ -1,9 +1,18 @@
-import { Route } from "react-router-dom";
+import { DashboardScreen } from "~/pages/Dashboard";
+import { ProtectedRoute } from "~/routes/ProtectedRoutes";
 
-const PrivateRoutes: React.FC = () => (
-  <>
-    <Route />
-  </>
-);
+enum Roles {
+  ADMIN = "Admin",
+  USER = "User",
+}
 
-export default PrivateRoutes;
+export const privateRoutes = [
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute role={Roles.USER}>
+        <DashboardScreen />
+      </ProtectedRoute>
+    ),
+  },
+];

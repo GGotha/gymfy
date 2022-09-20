@@ -1,13 +1,14 @@
 import { createContext, useCallback, useState } from "react";
+import { User } from "~/generated/graphql";
 import { token as tokenDomain, user as userDomain } from "~/globals/Domains";
 
 type UserState = {
-  user: object;
+  user: User;
   token: string;
 };
 
 type UserContextType = {
-  user: object;
+  user: User;
   signIn(data: UserState): Promise<void>;
   signOut(): void;
 };

@@ -1,5 +1,6 @@
-import { searchIcon, chatIcon, bellIcon, profile } from "~/assets/images";
+import { bellIcon, chatIcon, searchIcon, profile } from "~/assets/images";
 import { InputComponent } from "~/components/Input";
+import { MenuDropdownNavbarComponent } from "~/components/MenuDropdownNavbar";
 
 const NavbarComponent: React.FC = () => {
   return (
@@ -10,14 +11,16 @@ const NavbarComponent: React.FC = () => {
           <InputComponent placeholder="Procurar" />
         </div>
         <div className="flex items-center">
-          <img src={chatIcon} alt="" className="cursor-pointer" />
+          <img src={chatIcon} alt="cursor" className="cursor-pointer" />
           <div className="relative cursor-pointer">
             <img src={bellIcon} alt="" className="ml-14" />
             <span className="animate-ping right-0 bottom-4 absolute rounded-full h-3 w-3 bg-[#F8961C]"></span>
           </div>
-          <div className="rounded-lg w-11 h-11 bg-white ml-14 cursor-pointer">
-            <img src={profile} alt="" className="w-full h-full rounded-lg" />
-          </div>
+          <MenuDropdownNavbarComponent>
+            <div className="rounded-lg w-11 h-11 cursor-pointer">
+              <img src={profile} alt="profile" className="w-full h-full rounded-lg" />
+            </div>
+          </MenuDropdownNavbarComponent>
         </div>
       </div>
     </>
