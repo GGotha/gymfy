@@ -4,7 +4,7 @@ import { LoginScreen } from "~/pages/Login";
 import { RegisterScreen } from "~/pages/Register";
 
 export const publicRoutes = [
-  { path: "/", element: <HomeScreen /> },
+  { path: "/", element: <DashboardScreen /> },
   { path: "/login", element: <LoginScreen /> },
   { path: "/register", element: <RegisterScreen /> },
   { path: "/dashboard", element: <DashboardScreen /> },
