@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.17.0",
+    "npm": "8.15.0",
+    "yarn": "1.22.19"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
