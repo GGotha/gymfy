@@ -1,4 +1,3 @@
-import { GraphQLClient } from "graphql-request";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +9,7 @@ import { InputComponent } from "~/components/Input";
 import { LoaderComponent } from "~/components/Loader";
 import { useRegisterMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
-
-const API_URL = `http://localhost:4000`;
+import { graphQLClient } from "~/globals/graphql-client";
 
 type RegisterType = {
   name: string;
@@ -19,7 +17,6 @@ type RegisterType = {
   password: string;
 };
 
-const graphQLClient = new GraphQLClient(API_URL);
 const RegisterScreen: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<RegisterType>();

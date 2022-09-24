@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "~/hooks/useAuth";
 
@@ -16,10 +15,6 @@ export const ProtectedRoute = ({
   const { user } = useAuth();
 
   const userRoleName = user?.role?.name.toLocaleLowerCase();
-
-  console.log("roles::", roles);
-  console.log("userRoleName::", userRoleName);
-  console.log(roles.includes(userRoleName));
 
   if (!user || !roles.includes(userRoleName)) {
     return <Navigate to={redirectPath} replace />;

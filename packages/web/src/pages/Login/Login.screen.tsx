@@ -10,15 +10,13 @@ import { InputComponent } from "~/components/Input";
 import { LoaderComponent } from "~/components/Loader";
 import { useAuthenticateMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
-
-const API_URL = `http://localhost:4000`;
+import { graphQLClient } from "~/globals/graphql-client";
 
 type LoginAuthenticate = {
   email: string;
   password: string;
 };
 
-const graphQLClient = new GraphQLClient(API_URL);
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<LoginAuthenticate>();
