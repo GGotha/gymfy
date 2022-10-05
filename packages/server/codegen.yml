@@ -1,8 +1,0 @@
-overwrite: true
-schema: "./src/modules/**/graphql/*.graphql"
-documents: null
-generates:
-  ./src/schema.graphql.generated.ts:
-    plugins:
-      - "typescript"
-      - "typescript-resolvers"

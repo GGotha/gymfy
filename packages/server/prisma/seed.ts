@@ -45,6 +45,54 @@ async function main() {
       password: await bcrypt.hash("123mudar", 8),
     },
   });
+
+  await prisma.transactionType.upsert({
+    where: { id: "1" },
+    update: {},
+    create: {
+      name: "Incoming",
+    },
+  });
+
+  await prisma.transactionType.upsert({
+    where: { id: "2" },
+    update: {},
+    create: {
+      name: "Outgoing",
+    },
+  });
+
+  await prisma.plan.upsert({
+    where: { id: "1" },
+    update: {},
+    create: {
+      name: "Ruby",
+    },
+  });
+
+  await prisma.plan.upsert({
+    where: { id: "2" },
+    update: {},
+    create: {
+      name: "Diamond",
+    },
+  });
+
+  await prisma.plan.upsert({
+    where: { id: "3" },
+    update: {},
+    create: {
+      name: "Gold",
+    },
+  });
+
+  await prisma.plan.upsert({
+    where: { id: "4" },
+    update: {},
+    create: {
+      name: "Silver",
+    },
+  });
 }
 
 main()

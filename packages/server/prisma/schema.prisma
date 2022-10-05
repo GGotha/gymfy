@@ -9,16 +9,21 @@ datasource db {
 
 model User {
   id         String    @id @default(uuid())
+  id_role    String
+  id_plan    String?
   email      String    @unique
   password   String
   name       String
+  plan_expired_at DateTime? 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
+ 
 
   role Role @relation(fields: [id_role], references: [id])
+  plan Plan? @relation(fields: [id_plan], references: [id])
 
-  id_role String
   Checkin Checkin[]
+  Transaction Transaction[]
 
   @@map("users")
 }
@@ -30,19 +35,54 @@ model Role {
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
-  users User[]
+  user User[]
 
   @@map("roles")
 }
 
 model Checkin {
   id         String    @id @default(uuid())
+  id_user    String
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
   user User @relation(fields: [id_user], references: [id])
 
-  id_user String
-
   @@map("checkins")
+}
+
+model Plan {
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  user User[]
+
+  @@map("plans")
+}
+
+model TransactionType {
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  transactions Transaction[]
+
+  @@map("transaction_types")
+}
+model Transaction {
+  id         String    @id @default(uuid())
+  id_user    String
+  id_type    String
+  gyc_amount String
+  brl_amount String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  transactionType TransactionType @relation(fields: [id_type], references: [id])
+  user User @relation(fields: [id_user], references: [id])
+
+  @@map("transactions")
 }

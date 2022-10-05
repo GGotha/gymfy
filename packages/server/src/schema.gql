@@ -17,12 +17,22 @@ scalar DateTime
 
 type Mutation {
   authenticate(email: String!, password: String!): UserResponse!
+  cancelPlan: User!
+  choosePlan(id_plan: String!): User!
   createCheckin: Checkin!
   register(email: String!, name: String!, password: String!): UserResponse!
 }
 
+type Plan {
+  created_at: DateTime!
+  id: ID!
+  name: String!
+  updated_at: DateTime!
+  user: User!
+}
+
 type Query {
-  getCheckin: Checkin!
+  getPlans: [Plan!]!
 }
 
 type Role {
@@ -38,6 +48,8 @@ type User {
   email: String!
   id: ID!
   name: String!
+  plan: Plan
+  plan_expired_at: DateTime
   role: Role!
   updated_at: DateTime!
 }

@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from "type-graphql";
+import { Plan } from "./Plan";
 import { Role } from "./Role";
 
 @ObjectType()
@@ -12,6 +13,9 @@ export class User {
   @Field()
   name: string;
 
+  @Field({ nullable: true })
+  plan_expired_at?: Date;
+
   @Field()
   created_at: Date;
 
@@ -20,4 +24,7 @@ export class User {
 
   @Field(() => Role)
   role: Role;
+
+  @Field({ nullable: true })
+  plan?: Plan;
 }

@@ -15,10 +15,10 @@
     "start:development": "dotenv -e .env.development -- ts-node -r tsconfig-paths/register src/app.ts --ignore-watch ./node_modules",
     "start:production": "export NODE_ENV=production && dotenv -e .env.production -- node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
     "db:generate": "prisma generate",
-    "db:sync": "prisma migrate dev",
-    "db:seed": "ts-node ./prisma/seed.ts",
-    "db:truncate": "ts-node ./prisma/truncate.ts",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "db:sync": "dotenv -e .env.development -- prisma migrate dev",
+    "db:studio": "dotenv -e .env.development -- prisma studio",
+    "db:seed": "dotenv -e .env.development -- ts-node ./prisma/seed.ts",
+    "db:truncate": "dotenv -e .env.development -- ts-node ./prisma/truncate.ts"
   },
   "keywords": [],
   "author": "",
@@ -52,6 +52,7 @@
     "apollo-server": "^3.10.1",
     "bcrypt": "^5.0.1",
     "class-validator": "^0.13.2",
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.0",
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",

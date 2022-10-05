@@ -5,14 +5,13 @@ import "dotenv/config";
 import path from "path";
 import { buildSchema } from "type-graphql";
 
-import { CheckinResolver, UserResolver } from "~/graphql/resolvers";
 import { customAuthChecker } from "~/core/customAuthChecker";
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 async function main() {
   const schema = await buildSchema({
-    resolvers: [UserResolver, CheckinResolver],
+    resolvers: [`${__dirname}/graphql/resolvers/*.{ts,js}`],
     emitSchemaFile: path.resolve(__dirname, "schema.gql"),
     authChecker: customAuthChecker,
   });

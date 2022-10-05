@@ -42,7 +42,10 @@ export class UserResolver {
 
   @Mutation(() => UserResponse)
   async authenticate(@Arg("email") email: string, @Arg("password") password: string) {
-    const user = await prisma.user.findFirst({ where: { email }, include: { role: true } });
+    const user = await prisma.user.findFirst({
+      where: { email },
+      include: { role: true, plan: true },
+    });
 
     if (
       !user ||
