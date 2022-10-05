@@ -15,12 +15,29 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+type Event {
+  created_at: DateTime!
+  id: ID!
+  text: String!
+  type: String!
+  updated_at: DateTime!
+}
+
 type Mutation {
   authenticate(email: String!, password: String!): UserResponse!
   cancelPlan: User!
   choosePlan(id_plan: String!): User!
   createCheckin: Checkin!
+  createNotification(id_event: String!, id_user: String!): Notification!
   register(email: String!, name: String!, password: String!): UserResponse!
+}
+
+type Notification {
+  created_at: DateTime!
+  event: Event!
+  id: ID!
+  updated_at: DateTime!
+  user: User!
 }
 
 type Plan {

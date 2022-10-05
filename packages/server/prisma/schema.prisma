@@ -24,6 +24,7 @@ model User {
 
   Checkin Checkin[]
   Transaction Transaction[]
+  Notification Notification[]
 
   @@map("users")
 }
@@ -85,4 +86,29 @@ model Transaction {
   user User @relation(fields: [id_user], references: [id])
 
   @@map("transactions")
+}
+model Event {
+  id         String    @id @default(uuid())
+  type String
+  text String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  Notification Notification[]
+
+  @@map("events")
+}
+
+model Notification {
+  id         String    @id @default(uuid())
+  id_user_to_notify String
+  id_event String
+  seen_by_user Boolean @default(false)
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  user User @relation(fields: [id_user_to_notify], references: [id])
+  event Event @relation(fields: [id_event], references: [id])
+
+  @@map("notifications")
 }

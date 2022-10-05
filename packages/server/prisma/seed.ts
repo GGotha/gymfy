@@ -93,6 +93,24 @@ async function main() {
       name: "Silver",
     },
   });
+
+  await prisma.event.upsert({
+    where: { id: "1" },
+    update: {},
+    create: {
+      type: "Plan",
+      text: "Congratulations! New plan was registered!",
+    },
+  });
+
+  await prisma.event.upsert({
+    where: { id: "1" },
+    update: {},
+    create: {
+      type: "Plan",
+      text: "Current Plan was canceled!",
+    },
+  });
 }
 
 main()
