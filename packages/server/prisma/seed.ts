@@ -10,7 +10,6 @@ async function main() {
     create: {
       name: "Administrator",
       active: true,
-      created_at: new Date(),
     },
   });
 
@@ -20,7 +19,6 @@ async function main() {
     create: {
       name: "User",
       active: true,
-      created_at: new Date(),
     },
   });
 

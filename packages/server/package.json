@@ -11,8 +11,8 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "dev": "dotenv -e .env.development -- ts-node-dev -r tsconfig-paths/register --respawn --exit-child --transpile-only src/app.ts --ignore-watch ./node_modules",
-    "start:development": "dotenv -e .env.development -- ts-node -r tsconfig-paths/register src/app.ts --ignore-watch ./node_modules",
+    "dev": "export NODE_ENV=development && dotenv -e .env.development -- ts-node-dev -r tsconfig-paths/register --respawn --exit-child --transpile-only src/app.ts --ignore-watch ./node_modules",
+    "start:development": "export NODE_ENV=development && dotenv -e .env.development -- ts-node -r tsconfig-paths/register src/app.ts --ignore-watch ./node_modules",
     "start:production": "export NODE_ENV=production && dotenv -e .env.production -- node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
     "db:generate": "prisma generate",
     "db:sync": "dotenv -e .env.development -- prisma migrate dev",

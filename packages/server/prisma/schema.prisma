@@ -7,6 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// We don´t have support for MySQL Timezone, so we did a workaround here
+// https://github.com/prisma/prisma/issues/5051
+
 model User {
   id         String    @id @default(uuid())
   id_role    String
@@ -15,8 +18,8 @@ model User {
   password   String
   name       String
   plan_expired_at DateTime? 
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
  
 
   role Role @relation(fields: [id_role], references: [id])
@@ -33,8 +36,8 @@ model Role {
   id         String    @id @default(uuid())
   name       String
   active     Boolean
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   user User[]
 
@@ -44,8 +47,8 @@ model Role {
 model Checkin {
   id         String    @id @default(uuid())
   id_user    String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   user User @relation(fields: [id_user], references: [id])
 
@@ -55,8 +58,8 @@ model Checkin {
 model Plan {
   id         String    @id @default(uuid())
   name       String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   user User[]
 
@@ -66,8 +69,8 @@ model Plan {
 model TransactionType {
   id         String    @id @default(uuid())
   name       String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   transactions Transaction[]
 
@@ -79,8 +82,8 @@ model Transaction {
   id_type    String
   gyc_amount String
   brl_amount String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   transactionType TransactionType @relation(fields: [id_type], references: [id])
   user User @relation(fields: [id_user], references: [id])
@@ -91,8 +94,8 @@ model Event {
   id         String    @id @default(uuid())
   type String
   text String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   Notification Notification[]
 
@@ -104,8 +107,8 @@ model Notification {
   id_user_to_notify String
   id_event String
   seen_by_user Boolean @default(false)
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
+  updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
   user User @relation(fields: [id_user_to_notify], references: [id])
   event Event @relation(fields: [id_event], references: [id])

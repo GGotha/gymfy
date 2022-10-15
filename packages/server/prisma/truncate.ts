@@ -4,11 +4,13 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.transaction.deleteMany();
+  await prisma.notification.deleteMany();
   await prisma.checkin.deleteMany();
   await prisma.user.deleteMany();
   await prisma.role.deleteMany();
   await prisma.plan.deleteMany();
   await prisma.transactionType.deleteMany();
+  await prisma.event.deleteMany();
 }
 
 main()
