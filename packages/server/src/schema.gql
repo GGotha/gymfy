@@ -41,11 +41,12 @@ type Notification {
 }
 
 type Plan {
+  brl_amount: Float!
   created_at: DateTime!
   id: ID!
+  image: String!
   name: String!
   updated_at: DateTime!
-  user: User!
 }
 
 type Query {
@@ -64,6 +65,7 @@ type User {
   created_at: DateTime!
   email: String!
   id: ID!
+  id_plan: String
   name: String!
   plan: Plan
   plan_expired_at: DateTime

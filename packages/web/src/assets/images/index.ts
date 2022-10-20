@@ -26,3 +26,7 @@ export { default as graphIncrease } from "./graphIncrease.svg";
 export { default as graphDecrease } from "./graphDecrease.svg";
 export { default as wallpaper } from "./wallpaper.jpg";
 export { default as gymIcon } from "./gym-icon.svg";
+export { default as marketplaceIcon } from "./marketplace.svg";
+export { default as rubyIcon } from "./ruby.svg";
+export { default as diamondIcon } from "./diamond.svg";
+export { default as goldIcon } from "./gold.svg";

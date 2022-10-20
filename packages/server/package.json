@@ -16,6 +16,7 @@
     "start:production": "export NODE_ENV=production && dotenv -e .env.production -- node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
     "db:generate": "prisma generate",
     "db:sync": "dotenv -e .env.development -- prisma migrate dev",
+    "db:push": "dotenv -e .env.development -- prisma db push",
     "db:studio": "dotenv -e .env.development -- prisma studio",
     "db:seed": "dotenv -e .env.development -- ts-node ./prisma/seed.ts",
     "db:truncate": "dotenv -e .env.development -- ts-node ./prisma/truncate.ts"

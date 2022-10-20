@@ -1,4 +1,6 @@
 import { DashboardScreen } from "~/pages/Dashboard";
+import { MainScreen } from "~/pages/Main";
+import { PlanScreen } from "~/pages/Plan";
 import { ProtectedRoute } from "~/routes/ProtectedRoutes";
 
 enum Roles {
@@ -11,7 +13,19 @@ export const privateRoutes = [
     path: "/dashboard",
     element: (
       <ProtectedRoute roles={[Roles.USER, Roles.ADMINISTRATOR]}>
-        <DashboardScreen />
+        <MainScreen>
+          <DashboardScreen />
+        </MainScreen>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/plan",
+    element: (
+      <ProtectedRoute roles={[Roles.USER, Roles.ADMINISTRATOR]}>
+        <MainScreen>
+          <PlanScreen />
+        </MainScreen>
       </ProtectedRoute>
     ),
   },

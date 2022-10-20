@@ -65,6 +65,8 @@ async function main() {
     update: {},
     create: {
       name: "Ruby",
+      brl_amount: 129.99,
+      image: "http://localhost:3000/ruby.svg",
     },
   });
 
@@ -73,6 +75,8 @@ async function main() {
     update: {},
     create: {
       name: "Diamond",
+      brl_amount: 99.99,
+      image: "http://localhost:3000/diamond.svg",
     },
   });
 
@@ -81,14 +85,8 @@ async function main() {
     update: {},
     create: {
       name: "Gold",
-    },
-  });
-
-  await prisma.plan.upsert({
-    where: { id: "4" },
-    update: {},
-    create: {
-      name: "Silver",
+      brl_amount: 69.99,
+      image: "http://localhost:3000/gold.svg",
     },
   });
 

@@ -1,4 +1,3 @@
-import { GraphQLClient } from "graphql-request";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +8,8 @@ import { CardComponent } from "~/components/Card";
 import { InputComponent } from "~/components/Input";
 import { LoaderComponent } from "~/components/Loader";
 import { useAuthenticateMutation } from "~/generated/graphql";
-import { useAuth } from "~/hooks/useAuth";
 import { graphQLClient } from "~/globals/graphql-client";
+import { useAuth } from "~/hooks/useAuth";
 
 type LoginAuthenticate = {
   email: string;

@@ -58,6 +58,8 @@ model Checkin {
 model Plan {
   id         String    @id @default(uuid())
   name       String
+  brl_amount Decimal   @db.Decimal(15,2)
+  image      String   
   created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
   updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 
@@ -80,8 +82,8 @@ model Transaction {
   id         String    @id @default(uuid())
   id_user    String
   id_type    String
-  gyc_amount String
-  brl_amount String
+  gyc_amount Decimal   @db.Decimal(15,2)
+  brl_amount Decimal   @db.Decimal(15,2)
   created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
   updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 

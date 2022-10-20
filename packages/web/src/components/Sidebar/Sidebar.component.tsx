@@ -6,24 +6,26 @@ import {
   heartIcon,
   helpIcon,
   houseIcon,
-  mailIcon,
+  marketplaceIcon,
   plusIcon,
   settingsIcon,
   usdcoinIcon,
 } from "~/assets/images";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { OptionSidebarComponent } from "~/components/OptionSidebar";
 
 type SidebarListProps = {
   name: string;
   icon: string;
+  path: string;
 };
 
 enum SidebarEnum {
   dashboard = "Início",
+  plan = "Planos",
   marketplace = "Mercado",
-  inbox = "Transações",
   favorites = "Favoritos",
   wallets = "Carteiras",
   bitcoin = "Bitcoin",
@@ -34,20 +36,21 @@ enum SidebarEnum {
 }
 
 const SIDEBAR_LIST: Array<SidebarListProps> = [
-  { name: SidebarEnum.dashboard, icon: houseIcon },
-  { name: SidebarEnum.marketplace, icon: hammerIcon },
-  { name: SidebarEnum.inbox, icon: mailIcon },
-  { name: SidebarEnum.favorites, icon: heartIcon },
-  { name: SidebarEnum.wallets, icon: plusIcon },
-  { name: SidebarEnum.bitcoin, icon: bitcoinIcon },
-  { name: SidebarEnum.ethereum, icon: ethereumIcon },
-  { name: SidebarEnum.usdCoin, icon: usdcoinIcon },
-  { name: SidebarEnum.settings, icon: settingsIcon },
-  { name: SidebarEnum.helpFaq, icon: helpIcon },
+  { name: SidebarEnum.dashboard, icon: houseIcon, path: "/dashboard" },
+  { name: SidebarEnum.plan, icon: hammerIcon, path: "/plan" },
+  { name: SidebarEnum.marketplace, icon: marketplaceIcon, path: "/dashboard" },
+  { name: SidebarEnum.favorites, icon: heartIcon, path: "/dashboard" },
+  { name: SidebarEnum.wallets, icon: plusIcon, path: "/dashboard" },
+  { name: SidebarEnum.bitcoin, icon: bitcoinIcon, path: "/dashboard" },
+  { name: SidebarEnum.ethereum, icon: ethereumIcon, path: "/dashboard" },
+  { name: SidebarEnum.usdCoin, icon: usdcoinIcon, path: "/dashboard" },
+  { name: SidebarEnum.settings, icon: settingsIcon, path: "/dashboard" },
+  { name: SidebarEnum.helpFaq, icon: helpIcon, path: "/dashboard" },
 ];
 
 const SidebarComponent: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -61,9 +64,14 @@ const SidebarComponent: React.FC = () => {
               key={index}
               name={option.name}
               icon={option.icon}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => {
+                navigate(option.path);
+                setCurrentIndex(index);
+              }}
+              // onClick={() => navigateToAnotherScreen(index, option.path)}
               isDashboard={index === currentIndex && option.name !== SidebarEnum.wallets}
               hasNotifications={index === 2}
+              path={option.path}
             />
             {option.name === SidebarEnum.favorites || option.name === SidebarEnum.usdCoin ? (
               <div className="border border-sidebarDivider w-full my-8" />

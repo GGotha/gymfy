@@ -1,0 +1,11 @@
+query GetPlans {
+  getPlans {
+    id
+    name
+    brl_amount
+    image
+    created_at
+    updated_at
+    __typename
+  }
+}

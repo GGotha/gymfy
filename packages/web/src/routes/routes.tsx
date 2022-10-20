@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { DashboardScreen } from "~/pages/Dashboard";
 import { privateRoutes } from "~/routes/private.routes";
 import { publicRoutes } from "./public.routes";
 

@@ -1,11 +1,13 @@
 type OptionSidebarProps = {
   name: string;
   icon: string;
+  path: string;
   iconWidth?: string;
   iconHeight?: string;
   isDashboard?: boolean;
   hasNotifications?: boolean;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  // onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
+  onClick: any;
 };
 
 const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
@@ -14,7 +16,6 @@ const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
   iconWidth = "w-[25px]",
   iconHeight = "h-[25px]",
   isDashboard = false,
-  hasNotifications = false,
   onClick,
 }) => {
   const imageDefaultStyles = "ml-6 mr-4";
@@ -35,17 +36,10 @@ const OptionSidebarComponent: React.FC<OptionSidebarProps> = ({
     <>
       <div className={backgroundStyle} onClick={onClick}>
         <div className="w-16">
-          <img src={icon} alt={imageAlt ?? ""} className={imageStyle} />
+          <img src={icon} alt={imageAlt ?? ""} className={imageStyle} color="white" />
         </div>
         <h1 className={textStyle}>{name}</h1>
       </div>
-      {hasNotifications ? (
-        <div className="relative">
-          <span className="animate-ping right-14 bottom-5 absolute rounded-full h-3 w-3 bg-[#F8961C]" />
-        </div>
-      ) : (
-        <div></div>
-      )}
     </>
   );
 };

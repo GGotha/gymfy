@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { GraphQLClient } from 'graphql-request';
-import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { RequestInit } from 'graphql-request/dist/types.dom';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -28,10 +29,22 @@ export type Checkin = {
   user: User;
 };
 
+export type Event = {
+  __typename?: 'Event';
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
+  text: Scalars['String'];
+  type: Scalars['String'];
+  updated_at: Scalars['DateTime'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   authenticate: UserResponse;
+  cancelPlan: User;
+  choosePlan: User;
   createCheckin: Checkin;
+  createNotification: Notification;
   register: UserResponse;
 };
 
@@ -42,15 +55,45 @@ export type MutationAuthenticateArgs = {
 };
 
 
+export type MutationChoosePlanArgs = {
+  id_plan: Scalars['String'];
+};
+
+
+export type MutationCreateNotificationArgs = {
+  id_event: Scalars['String'];
+  id_user: Scalars['String'];
+};
+
+
 export type MutationRegisterArgs = {
   email: Scalars['String'];
   name: Scalars['String'];
   password: Scalars['String'];
 };
 
+export type Notification = {
+  __typename?: 'Notification';
+  created_at: Scalars['DateTime'];
+  event: Event;
+  id: Scalars['ID'];
+  updated_at: Scalars['DateTime'];
+  user: User;
+};
+
+export type Plan = {
+  __typename?: 'Plan';
+  brl_amount: Scalars['Float'];
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  updated_at: Scalars['DateTime'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  getCheckin: Checkin;
+  getPlans: Array<Plan>;
 };
 
 export type Role = {
@@ -67,7 +110,10 @@ export type User = {
   created_at: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['ID'];
+  id_plan?: Maybe<Scalars['String']>;
   name: Scalars['String'];
+  plan?: Maybe<Plan>;
+  plan_expired_at?: Maybe<Scalars['DateTime']>;
   role: Role;
   updated_at: Scalars['DateTime'];
 };
@@ -84,7 +130,19 @@ export type AuthenticateMutationVariables = Exact<{
 }>;
 
 
-export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any } } } };
+export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, id_plan?: string | null, plan_expired_at?: any | null, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any }, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } } };
+
+export type ChoosePlanMutationVariables = Exact<{
+  idPlan: Scalars['String'];
+}>;
+
+
+export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
+
+export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPlansQuery = { __typename?: 'Query', getPlans: Array<{ __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any }> };
 
 export type RegisterMutationVariables = Exact<{
   name: Scalars['String'];
@@ -103,6 +161,7 @@ export const AuthenticateDocument = `
       id
       name
       email
+      id_plan
       role {
         id
         name
@@ -111,6 +170,16 @@ export const AuthenticateDocument = `
         updated_at
         __typename
       }
+      plan {
+        id
+        name
+        brl_amount
+        image
+        created_at
+        updated_at
+        __typename
+      }
+      plan_expired_at
       created_at
       updated_at
       __typename
@@ -130,6 +199,61 @@ export const useAuthenticateMutation = <
     useMutation<AuthenticateMutation, TError, AuthenticateMutationVariables, TContext>(
       ['Authenticate'],
       (variables?: AuthenticateMutationVariables) => fetcher<AuthenticateMutation, AuthenticateMutationVariables>(client, AuthenticateDocument, variables, headers)(),
+      options
+    );
+export const ChoosePlanDocument = `
+    mutation ChoosePlan($idPlan: String!) {
+  choosePlan(id_plan: $idPlan) {
+    plan {
+      id
+      name
+      brl_amount
+      image
+      created_at
+      updated_at
+      __typename
+    }
+  }
+}
+    `;
+export const useChoosePlanMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<ChoosePlanMutation, TError, ChoosePlanMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<ChoosePlanMutation, TError, ChoosePlanMutationVariables, TContext>(
+      ['ChoosePlan'],
+      (variables?: ChoosePlanMutationVariables) => fetcher<ChoosePlanMutation, ChoosePlanMutationVariables>(client, ChoosePlanDocument, variables, headers)(),
+      options
+    );
+export const GetPlansDocument = `
+    query GetPlans {
+  getPlans {
+    id
+    name
+    brl_amount
+    image
+    created_at
+    updated_at
+    __typename
+  }
+}
+    `;
+export const useGetPlansQuery = <
+      TData = GetPlansQuery,
+      TError = string
+    >(
+      client: GraphQLClient,
+      variables?: GetPlansQueryVariables,
+      options?: UseQueryOptions<GetPlansQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GetPlansQuery, TError, TData>(
+      variables === undefined ? ['GetPlans'] : ['GetPlans', variables],
+      fetcher<GetPlansQuery, GetPlansQueryVariables>(client, GetPlansDocument, variables, headers),
       options
     );
 export const RegisterDocument = `

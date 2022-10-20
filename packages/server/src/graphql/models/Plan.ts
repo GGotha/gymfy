@@ -1,5 +1,4 @@
-import { Field, ID, ObjectType } from "type-graphql";
-import { User } from "~/graphql/models";
+import { Field, ID, ObjectType, Float } from "type-graphql";
 
 @ObjectType()
 export class Plan {
@@ -9,12 +8,18 @@ export class Plan {
   @Field()
   name: string;
 
+  @Field(() => Float)
+  brl_amount: number;
+
+  @Field()
+  image: string;
+
   @Field()
   created_at: Date;
 
   @Field()
   updated_at: Date;
 
-  @Field(() => User)
-  user: User;
+  // @Field(() => User)
+  // user: User;
 }

@@ -14,6 +14,9 @@ export class User {
   name: string;
 
   @Field({ nullable: true })
+  id_plan?: string;
+
+  @Field({ nullable: true })
   plan_expired_at?: Date;
 
   @Field()

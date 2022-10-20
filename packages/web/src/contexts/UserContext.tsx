@@ -9,6 +9,7 @@ type UserState = {
 
 type UserContextType = {
   user: User;
+  token: string;
   signIn(data: UserState): Promise<void>;
   signOut(): void;
 };
@@ -42,7 +43,7 @@ export const UserProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user: data!.user, signIn, signOut }}>
+    <UserContext.Provider value={{ user: data!.user, token: data!.token, signIn, signOut }}>
       {children}
     </UserContext.Provider>
   );
