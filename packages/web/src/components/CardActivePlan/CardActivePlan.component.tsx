@@ -1,5 +1,9 @@
+/* eslint-disable import/no-duplicates */
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { parseISO } from "date-fns/esm";
 import { GraphQLClient } from "graphql-request";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { ButtonComponent } from "~/components/Button";
 import { LoaderComponent } from "~/components/Loader";
@@ -16,6 +20,12 @@ type CardActivePlanProps = {
 const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, expiredAt }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useAuth();
+
+  const expiredAtFormatted = useMemo(() => {
+    const formatToDate = parseISO(expiredAt);
+
+    return format(formatToDate, "'dia' dd 'de' MMMM'", { locale: ptBR });
+  }, []);
 
   const { mutateAsync, isLoading } = useCancelPlanMutation(
     new GraphQLClient("http://localhost:4000", {
@@ -53,7 +63,7 @@ const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, e
           </h1>
           <h1 className="text-smoothGrey text-base font-saira mb-16">
             <span className="text-xl"></span>
-            Expira em {expiredAt}
+            Expira {expiredAtFormatted}
           </h1>
           <div className="flex justify-center w-full ml-20">
             <div className="flex flex-col items-center">
