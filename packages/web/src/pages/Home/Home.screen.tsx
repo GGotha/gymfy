@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { logoIcon } from "~/assets/images";
+import { gymfyWithoutTextIcon } from "~/assets/images";
 import { ButtonComponent } from "~/components/Button";
 import { HomePageFooterComponent } from "~/components/HomePageFooter";
 import { LikeAndFollowTextComponent } from "~/components/LikeAndFollowText";
@@ -16,7 +16,7 @@ const HomeScreen: React.FC = () => {
           <div className="md:mx-32 md:block md:py-0 md:px-0 py-14 mx-0 px-20 h-full flex flex-col items-center justify-center">
             <div className="md:flex md:justify-between md:flex-row md:pt-20 flex-col items-center">
               <div className="md:hover:animate-pulse md:cursor-pointer md:mb-0 mb-20 flex justify-center">
-                <img src={logoIcon} alt="logo" width={50} />
+                <img src={gymfyWithoutTextIcon} alt="logo" width={85} />
               </div>
 
               <ButtonComponent
@@ -30,12 +30,12 @@ const HomeScreen: React.FC = () => {
                 Entrar
               </ButtonComponent>
             </div>
-            <div className="w-full lg:w-1/2 mt-14">
+            <div className="w-full lg:w-1/2 mt-40">
               <LikeAndFollowTextComponent />
             </div>
-            <div className="mt-24">
+            {/* <div className="mt-24">
               <HomePageFooterComponent />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

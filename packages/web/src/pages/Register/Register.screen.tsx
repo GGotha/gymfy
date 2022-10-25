@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { gymfyIcon } from "~/assets/images";
+import { gymfyWithTextIcon } from "~/assets/images";
 import { ButtonComponent } from "~/components/Button";
 import { CardComponent } from "~/components/Card";
 import { InputComponent } from "~/components/Input";
@@ -52,7 +52,7 @@ const RegisterScreen: React.FC = () => {
         <div className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
           <CardComponent height="h-[520px]">
             <div className="flex justify-center pt-10">
-              <img src={gymfyIcon} alt="" width={70} />
+              <img src={gymfyWithTextIcon} alt="logo" width={140} />
             </div>
             <div className="flex items-center flex-col h-full px-5 pt-10">
               <form onSubmit={handleSubmit(onSubmit)}>

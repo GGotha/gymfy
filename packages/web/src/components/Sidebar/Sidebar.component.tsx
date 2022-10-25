@@ -1,7 +1,7 @@
 import {
   bitcoinIcon,
   ethereumIcon,
-  gymfyIcon,
+  gymfyWithTextIcon,
   hammerIcon,
   heartIcon,
   helpIcon,
@@ -55,8 +55,8 @@ const SidebarComponent: React.FC = () => {
   return (
     <>
       <div className="h-full px-5 bg-darkGrey flex flex-col items-center">
-        <div className="mt-6 mb-12 w-full">
-          <img src={gymfyIcon} alt="" />
+        <div className="mt-6 mb-6 w-full flex justify-center">
+          <img src={gymfyWithTextIcon} alt="logo" />
         </div>
         {SIDEBAR_LIST.map((option, index: number) => (
           <>
@@ -68,7 +68,6 @@ const SidebarComponent: React.FC = () => {
                 navigate(option.path);
                 setCurrentIndex(index);
               }}
-              // onClick={() => navigateToAnotherScreen(index, option.path)}
               isDashboard={index === currentIndex && option.name !== SidebarEnum.wallets}
               hasNotifications={index === 2}
               path={option.path}
