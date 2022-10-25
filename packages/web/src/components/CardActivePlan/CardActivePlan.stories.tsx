@@ -8,6 +8,6 @@ export default {
 export const BackgroundColor = () => {
   return (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    <CardActivePlan id="123" name="asdas" amount={123} image="asdsa" />
+    <CardActivePlan name="teste" image="teste" expiredAt="teste" />
   );
 };
