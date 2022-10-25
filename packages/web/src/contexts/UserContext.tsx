@@ -1,50 +1,26 @@
-import { createContext, useCallback, useState } from "react";
-import { User } from "~/generated/graphql";
-import { token as tokenDomain, user as userDomain } from "~/globals/Domains";
+import { createContext, useEffect, useReducer } from "react";
+import { user as userDomain } from "~/globals/Domains";
 
-type UserState = {
-  user: User;
-  token: string;
+const initialState = {};
+
+export const UserContext = createContext({} as any);
+
+const reducer = (state: any, newState: any) => {
+  if (newState === null) {
+    localStorage.removeItem(userDomain);
+    return initialState;
+  }
+  return { ...state, ...newState };
 };
 
-type UserContextType = {
-  user: User;
-  token: string;
-  signIn(data: UserState): Promise<void>;
-  signOut(): void;
-};
-
-export const UserContext = createContext<UserContextType>({} as UserContextType);
+const localState = JSON.parse(localStorage.getItem(userDomain)!);
 
 export const UserProvider = ({ children }: any) => {
-  const [data, setData] = useState<UserState>(() => {
-    const token = localStorage.getItem(tokenDomain);
-    const user = localStorage.getItem(userDomain);
+  const [state, setState] = useReducer(reducer, localState || initialState);
 
-    if (token && user) {
-      return { token, user: JSON.parse(user) };
-    }
+  useEffect(() => {
+    localStorage.setItem(userDomain, JSON.stringify(state));
+  }, [state]);
 
-    return {} as UserState;
-  });
-
-  const signIn = useCallback(async ({ user, token }: UserState) => {
-    localStorage.setItem(tokenDomain, token);
-    localStorage.setItem(userDomain, JSON.stringify(user));
-
-    setData({ token, user });
-  }, []);
-
-  const signOut = useCallback(() => {
-    localStorage.removeItem(tokenDomain);
-    localStorage.removeItem(userDomain);
-
-    setData({} as UserState);
-  }, []);
-
-  return (
-    <UserContext.Provider value={{ user: data!.user, token: data!.token, signIn, signOut }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={[state, setState]}>{children}</UserContext.Provider>;
 };

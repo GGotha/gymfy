@@ -72,7 +72,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
                       className="inline-flex justify-center rounded-md border-transparent bg-gradient-to-bl from-[#EB001B] to-[#0042FF] px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={() => handleSubmit()}
                     >
-                      Comprar
+                      Confirmar
                     </button>
                   </div>
                 </Dialog.Panel>

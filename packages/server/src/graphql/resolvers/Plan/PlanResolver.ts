@@ -28,7 +28,7 @@ export class PlanResolver {
     ]);
 
     if (!plan || !user) {
-      throw new ValidationError("Insufficient informations to continue");
+      throw new ValidationError("This plan or user doesn't exists!");
     }
 
     if (user.plan_expired_at && user.plan_expired_at > new Date()) {

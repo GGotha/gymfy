@@ -6,12 +6,12 @@ import { useGetPlansQuery } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 
 const PlanScreen: React.FC = () => {
-  const { token } = useAuth();
+  const [user] = useAuth();
 
   const { data, isFetching } = useGetPlansQuery(
     new GraphQLClient("http://localhost:4000", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     }),
   );

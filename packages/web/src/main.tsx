@@ -5,8 +5,8 @@ import { ToastContainer } from "react-toastify";
 import { UserProvider } from "~/contexts/UserContext";
 import App from "./App";
 
-import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
 const queryClient = new QueryClient();
 

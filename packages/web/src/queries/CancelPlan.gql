@@ -1,0 +1,8 @@
+mutation CancelPlan {
+  cancelPlan {
+    plan_expired_at
+    plan {
+      name
+    }
+  }
+}

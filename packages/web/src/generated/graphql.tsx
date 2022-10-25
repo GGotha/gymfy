@@ -132,12 +132,17 @@ export type AuthenticateMutationVariables = Exact<{
 
 export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, id_plan?: string | null, plan_expired_at?: any | null, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any }, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } } };
 
+export type CancelPlanMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CancelPlanMutation = { __typename?: 'Mutation', cancelPlan: { __typename?: 'User', plan_expired_at?: any | null, plan?: { __typename?: 'Plan', name: string } | null } };
+
 export type ChoosePlanMutationVariables = Exact<{
   idPlan: Scalars['String'];
 }>;
 
 
-export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
+export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan_expired_at?: any | null, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
 
 export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -201,6 +206,29 @@ export const useAuthenticateMutation = <
       (variables?: AuthenticateMutationVariables) => fetcher<AuthenticateMutation, AuthenticateMutationVariables>(client, AuthenticateDocument, variables, headers)(),
       options
     );
+export const CancelPlanDocument = `
+    mutation CancelPlan {
+  cancelPlan {
+    plan_expired_at
+    plan {
+      name
+    }
+  }
+}
+    `;
+export const useCancelPlanMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<CancelPlanMutation, TError, CancelPlanMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<CancelPlanMutation, TError, CancelPlanMutationVariables, TContext>(
+      ['CancelPlan'],
+      (variables?: CancelPlanMutationVariables) => fetcher<CancelPlanMutation, CancelPlanMutationVariables>(client, CancelPlanDocument, variables, headers)(),
+      options
+    );
 export const ChoosePlanDocument = `
     mutation ChoosePlan($idPlan: String!) {
   choosePlan(id_plan: $idPlan) {
@@ -213,6 +241,7 @@ export const ChoosePlanDocument = `
       updated_at
       __typename
     }
+    plan_expired_at
   }
 }
     `;

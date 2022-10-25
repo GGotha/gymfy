@@ -4,44 +4,35 @@ import { toast } from "react-toastify";
 import { ButtonComponent } from "~/components/Button";
 import { LoaderComponent } from "~/components/Loader";
 import { ModalComponent } from "~/components/Modal";
-import { useChoosePlanMutation } from "~/generated/graphql";
+import { useCancelPlanMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 
-type CardPlanProps = {
-  id: string;
+type CardActivePlanProps = {
   name: string;
-  amount: number;
   image: string;
+  expiredAt: string;
 };
 
-const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image }) => {
+const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, expiredAt }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useAuth();
 
-  const { mutateAsync, isLoading } = useChoosePlanMutation(
+  const { mutateAsync, isLoading } = useCancelPlanMutation(
     new GraphQLClient("http://localhost:4000", {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
     }),
     {
-      onSuccess: ({ choosePlan }) => {
-        const { plan, plan_expired_at } = choosePlan;
-
-        user.plan = plan;
-        user.plan_expired_at = plan_expired_at;
+      onSuccess: () => {
+        user.plan = null;
+        user.plan_expired_at = null;
 
         setUser({ ...user });
 
-        return toast.success("Plano comprado com sucesso!");
+        return toast.success("Plano cancelado com sucesso!");
       },
-      onError: (err: any) => {
-        const errMessage = err.response.errors[0].message;
-
-        if (errMessage === "You already have a plan!") {
-          return toast.error("Você já tem um plano ativo!");
-        }
-
+      onError: () => {
         return toast.error(
           "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
         );
@@ -53,20 +44,26 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
     <>
       <div className="flex flex-col justify-between h-full bg-black rounded-lg p-4">
         <div className="flex justify-center flex-col items-center">
-          <h1 className="text-smoothGrey text-base font-quicksand font-semibold mb-8">{name}</h1>
-          <h1 className="text-white text-4xl font-saira font-semibold mb-20">
-            <span className="text-xl">BRL </span>
-            {amount}
+          <h1 className="text-smoothGrey text-base font-quicksand font-semibold mb-8">
+            Plano Ativo
+          </h1>
+          <h1 className="text-white text-2xl font-saira font-semibold mb-0">
+            <span className="text-xl"></span>
+            Plano {name}
+          </h1>
+          <h1 className="text-smoothGrey text-base font-saira mb-16">
+            <span className="text-xl"></span>
+            Expira em {expiredAt}
           </h1>
           <div className="flex justify-center w-full ml-20">
             <div className="flex flex-col items-center">
               <img src={image} alt="" />
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full flex">
             <ButtonComponent
               hasBackgroundShadow={false}
-              backgroundColor="bg-gradient-to-bl from-[#EB001B] to-[#0042FF]"
+              backgroundColor="bg-[#EB001B]"
               backgroundColorHover="hover:bg-zinc-900"
               height="h-[50px]"
               borderRadius="rounded-2xl"
@@ -75,7 +72,7 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
                 setIsOpen(true);
               }}
             >
-              {isLoading ? <LoaderComponent /> : "Comprar"}
+              {isLoading ? <LoaderComponent /> : "Cancelar"}
             </ButtonComponent>
           </div>
         </div>
@@ -84,12 +81,12 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
         openModal={() => setIsOpen(true)}
-        title="Você deseja comprar esse plano?"
-        content="Ao comprar esse plano, será debitado o valor da sua conta automaticamente"
-        confirmButton={() => mutateAsync({ idPlan: id })}
+        title="Você realmente deseja cancelar esse plano?"
+        content="Ao cancelar esse plano, o valor pago não voltará para sua conta!"
+        confirmButton={() => mutateAsync({})}
       />
     </>
   );
 };
 
-export default CardPlanComponent;
+export default CardActivePlanComponent;

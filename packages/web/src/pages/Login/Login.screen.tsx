@@ -19,13 +19,13 @@ type LoginAuthenticate = {
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<LoginAuthenticate>();
-  const { signIn } = useAuth();
+  const [, setStateUser] = useAuth();
 
   const { mutateAsync, isLoading, isSuccess } = useAuthenticateMutation(graphQLClient, {
     onSuccess: (data) => {
       const { user, token } = data.authenticate;
 
-      signIn({ user, token });
+      setStateUser({ ...user, token });
 
       navigate("/dashboard");
     },

@@ -9,5 +9,6 @@ mutation ChoosePlan($idPlan: String!) {
       updated_at
       __typename
     }
+    plan_expired_at
   }
 }

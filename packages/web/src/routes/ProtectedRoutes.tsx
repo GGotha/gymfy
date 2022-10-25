@@ -12,7 +12,7 @@ export const ProtectedRoute = ({
   redirectPath = "/login",
   children,
 }: ProtectedRouteProps) => {
-  const { user } = useAuth();
+  const [user] = useAuth();
 
   const userRoleName = user?.role?.name.toLocaleLowerCase();
 

@@ -2,7 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { CircleStackIcon } from "@heroicons/react/20/solid";
 import { Fragment, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { user as userDomain } from "~/globals/Domains";
 import { useAuth } from "~/hooks/useAuth";
 
 type MenuDropdownNavbarComponentProps = {
@@ -10,11 +10,11 @@ type MenuDropdownNavbarComponentProps = {
 };
 
 const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = ({ children }) => {
-  const { user, signOut } = useAuth();
+  const [user] = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = useCallback(() => {
-    signOut();
+    localStorage.removeItem(userDomain);
     navigate("/");
   }, []);
 
