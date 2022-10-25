@@ -44,7 +44,7 @@ const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, e
       },
       onError: () => {
         return toast.error(
-          "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
+          "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
         );
       },
     },
@@ -82,7 +82,13 @@ const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, e
                 setIsOpen(true);
               }}
             >
-              {isLoading ? <LoaderComponent /> : "Cancelar"}
+              {isLoading ? (
+                <div className="flex justify-center">
+                  <LoaderComponent />
+                </div>
+              ) : (
+                "Cancelar"
+              )}
             </ButtonComponent>
           </div>
         </div>

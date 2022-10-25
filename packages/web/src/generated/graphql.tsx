@@ -144,6 +144,11 @@ export type ChoosePlanMutationVariables = Exact<{
 
 export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan_expired_at?: any | null, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
 
+export type CreateCheckinMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateCheckinMutation = { __typename?: 'Mutation', createCheckin: { __typename?: 'Checkin', id: string, user: { __typename?: 'User', id: string, name: string, email: string } } };
+
 export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -256,6 +261,31 @@ export const useChoosePlanMutation = <
     useMutation<ChoosePlanMutation, TError, ChoosePlanMutationVariables, TContext>(
       ['ChoosePlan'],
       (variables?: ChoosePlanMutationVariables) => fetcher<ChoosePlanMutation, ChoosePlanMutationVariables>(client, ChoosePlanDocument, variables, headers)(),
+      options
+    );
+export const CreateCheckinDocument = `
+    mutation CreateCheckin {
+  createCheckin {
+    id
+    user {
+      id
+      name
+      email
+    }
+  }
+}
+    `;
+export const useCreateCheckinMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<CreateCheckinMutation, TError, CreateCheckinMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<CreateCheckinMutation, TError, CreateCheckinMutationVariables, TContext>(
+      ['CreateCheckin'],
+      (variables?: CreateCheckinMutationVariables) => fetcher<CreateCheckinMutation, CreateCheckinMutationVariables>(client, CreateCheckinDocument, variables, headers)(),
       options
     );
 export const GetPlansDocument = `

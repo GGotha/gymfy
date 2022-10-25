@@ -10,7 +10,7 @@ import { useAuth } from "~/hooks/useAuth";
 type CardPlanProps = {
   id: string;
   name: string;
-  amount: number;
+  amount: string;
   image: string;
 };
 
@@ -43,7 +43,7 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
         }
 
         return toast.error(
-          "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
+          "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
         );
       },
     },
@@ -75,7 +75,13 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
                 setIsOpen(true);
               }}
             >
-              {isLoading ? <LoaderComponent /> : "Comprar"}
+              {isLoading ? (
+                <div className="flex justify-center">
+                  <LoaderComponent />
+                </div>
+              ) : (
+                "Comprar"
+              )}
             </ButtonComponent>
           </div>
         </div>

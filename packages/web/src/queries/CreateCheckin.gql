@@ -1,0 +1,10 @@
+mutation CreateCheckin {
+  createCheckin {
+    id
+    user {
+      id
+      name
+      email
+    }
+  }
+}

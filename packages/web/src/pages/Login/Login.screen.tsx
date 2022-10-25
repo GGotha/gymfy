@@ -37,7 +37,7 @@ const LoginScreen: React.FC = () => {
       }
 
       return toast.error(
-        "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
+        "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
       );
     },
   });
@@ -81,7 +81,7 @@ const LoginScreen: React.FC = () => {
                     width="w-full"
                   >
                     {isLoading ? (
-                      <div className="flex items-center justify-center">
+                      <div className="flex justify-center">
                         <LoaderComponent />
                       </div>
                     ) : (
