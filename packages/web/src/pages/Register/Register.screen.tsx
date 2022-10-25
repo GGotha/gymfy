@@ -20,18 +20,20 @@ type RegisterType = {
 const RegisterScreen: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<RegisterType>();
-  const { signIn } = useAuth();
+  const [, setStateUser] = useAuth();
 
   const { mutateAsync, isLoading, isSuccess } = useRegisterMutation(graphQLClient, {
     onSuccess: (data) => {
       const { user, token } = data.register;
 
-      signIn({ user, token });
+      setStateUser({ ...user, token });
 
       navigate("/dashboard");
     },
     onError: () => {
-      toast.error("Senha Inválida, tente novamente!");
+      return toast.error(
+        "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
+      );
     },
   });
 

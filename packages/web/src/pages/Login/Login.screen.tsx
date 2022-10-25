@@ -29,8 +29,16 @@ const LoginScreen: React.FC = () => {
 
       navigate("/dashboard");
     },
-    onError: () => {
-      toast.error("Senha Inválida, tente novamente!");
+    onError: (err: any) => {
+      const errMessage = err.response.errors[0].message;
+
+      if (errMessage === "E-mail or password invalid") {
+        return toast.error("Senha Inválida, tente novamente!");
+      }
+
+      return toast.error(
+        "Ocorreu um erro com o servidor, por favor, tente novamente! Caso o erro persistir, contate um administrador!",
+      );
     },
   });
 
