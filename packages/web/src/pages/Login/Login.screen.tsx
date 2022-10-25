@@ -10,6 +10,7 @@ import { LoaderComponent } from "~/components/Loader";
 import { useAuthenticateMutation } from "~/generated/graphql";
 import { graphQLClient } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
+import FadeIn from "react-fade-in";
 
 type LoginAuthenticate = {
   email: string;
@@ -54,7 +55,7 @@ const LoginScreen: React.FC = () => {
   return (
     <>
       <div className="bg-[url('./assets/images/wallpaper.jpg')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full">
-        <div className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
+        <FadeIn className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
           <CardComponent height="h-[520px]">
             <div className="flex justify-center pt-10">
               <img src={gymfyWithTextIcon} alt="logo" width={140} />
@@ -105,7 +106,7 @@ const LoginScreen: React.FC = () => {
               </form>
             </div>
           </CardComponent>
-        </div>
+        </FadeIn>
       </div>
     </>
   );

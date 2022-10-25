@@ -4,6 +4,7 @@ import { CardPlanComponent } from "~/components/CardPlan";
 import { LoaderComponent } from "~/components/Loader";
 import { useGetPlansQuery } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
+import FadeIn from "react-fade-in";
 
 const PlanScreen: React.FC = () => {
   const [user] = useAuth();
@@ -29,7 +30,7 @@ const PlanScreen: React.FC = () => {
   return (
     <>
       <div className="bg-black bg-opacity-95 h-full w-full p-8 flex">
-        <div>
+        <FadeIn>
           <h1 className="text-white text-2xl font-saira font-semibold mb-5">Planos</h1>
           <div className="flex items-center justify-center">
             {isFetching ? (
@@ -52,7 +53,7 @@ const PlanScreen: React.FC = () => {
               </>
             )}
           </div>
-        </div>
+        </FadeIn>
       </div>
     </>
   );

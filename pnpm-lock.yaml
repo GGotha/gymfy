@@ -131,6 +131,7 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       react-error-boundary: ^3.1.4
+      react-fade-in: ^2.0.1
       react-hook-form: ^7.35.0
       react-router-dom: ^6.3.0
       react-toastify: ^9.0.8
@@ -147,6 +148,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
+      react-fade-in: 2.0.1_react@18.2.0
       react-hook-form: 7.35.0_react@18.2.0
       react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
       react-toastify: 9.0.8_biqbaboplfbrettd7655fr4n2y
@@ -12743,6 +12745,14 @@ packages:
       react: '>=16.13.1'
     dependencies:
       '@babel/runtime': 7.19.0
+      react: 18.2.0
+    dev: false
+
+  /react-fade-in/2.0.1_react@18.2.0:
+    resolution: {integrity: sha512-oqS/WT4znaXEHmL+yo0IDUDY7uC9K4RP35j1SdRUEBspR09B2iIC0i8oJ28tPOr6Ez/L2aktF9p89j+DbsTVNw==}
+    peerDependencies:
+      react: ^16.8 || 17
+    dependencies:
       react: 18.2.0
     dev: false
 

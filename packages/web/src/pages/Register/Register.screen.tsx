@@ -10,6 +10,7 @@ import { LoaderComponent } from "~/components/Loader";
 import { useRegisterMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 import { graphQLClient } from "~/globals/graphql-client";
+import FadeIn from "react-fade-in";
 
 type RegisterType = {
   name: string;
@@ -49,7 +50,7 @@ const RegisterScreen: React.FC = () => {
   return (
     <>
       <div className="bg-[url('./assets/images/wallpaper.jpg')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full">
-        <div className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
+        <FadeIn className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
           <CardComponent height="h-[520px]">
             <div className="flex justify-center pt-10">
               <img src={gymfyWithTextIcon} alt="logo" width={140} />
@@ -70,22 +71,20 @@ const RegisterScreen: React.FC = () => {
                   props={{ ...register("password") }}
                 />
                 <div className="mb-5" />
-                <div className="w-full">
-                  <ButtonComponent
-                    backgroundColor="bg-gyGreen"
-                    backgroundColorHover="hover:bg-gradientOne"
-                    hasBackgroundShadow={false}
-                    width="w-full"
-                  >
-                    {isLoading ? (
-                      <div className="flex justify-center">
-                        <LoaderComponent />
-                      </div>
-                    ) : (
-                      "Cadastrar"
-                    )}
-                  </ButtonComponent>
-                </div>
+                <ButtonComponent
+                  backgroundColor="bg-gyGreen"
+                  backgroundColorHover="hover:bg-gradientOne"
+                  hasBackgroundShadow={false}
+                  width="w-full"
+                >
+                  {isLoading ? (
+                    <div className="flex justify-center">
+                      <LoaderComponent />
+                    </div>
+                  ) : (
+                    "Cadastrar"
+                  )}
+                </ButtonComponent>
                 <div className="flex justify-center mt-2">
                   <h1 className="text-primaryGrey text-sm">
                     <span
@@ -102,7 +101,7 @@ const RegisterScreen: React.FC = () => {
               </form>
             </div>
           </CardComponent>
-        </div>
+        </FadeIn>
       </div>
     </>
   );

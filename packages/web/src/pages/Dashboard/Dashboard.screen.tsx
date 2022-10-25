@@ -3,6 +3,7 @@ import { CardActivePlanComponent } from "~/components/CardActivePlan";
 import { CardCheckinComponent } from "~/components/CardCheckin";
 import { CardWalletComponent } from "~/components/CardWallet";
 import { useAuth } from "~/hooks/useAuth";
+import FadeIn from "react-fade-in";
 
 const DashboardScreen: React.FC = () => {
   const [user] = useAuth();
@@ -12,7 +13,7 @@ const DashboardScreen: React.FC = () => {
   return (
     <>
       <div className="bg-black bg-opacity-95 h-full w-full p-8 flex">
-        <div>
+        <FadeIn>
           <h1 className="text-white text-2xl font-saira font-semibold mb-5">Início</h1>
           <div className="flex">
             <CardComponent>
@@ -36,7 +37,7 @@ const DashboardScreen: React.FC = () => {
               <CardCheckinComponent />
             </CardComponent>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </>
   );
