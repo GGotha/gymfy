@@ -8,14 +8,18 @@ import { Checkin } from "~/graphql/models";
 
 @Resolver()
 export class CheckinResolver {
-  @Authorized("User")
+  @Authorized(["User", "Administrator"])
   @Mutation(() => Checkin)
   async createCheckin(@Ctx() context: any) {
     const { userId } = context.req;
+    let isAdministrator = false;
 
     const user = await prisma.user.findFirst({
       where: { id: userId },
+      include: { role: true },
     });
+
+    isAdministrator = user?.role.name === "Administrator";
 
     if (!user) {
       throw new ValidationError("Sorry! We didn´t find your user");
@@ -28,7 +32,7 @@ export class CheckinResolver {
       orderBy: { created_at: "desc" },
     });
 
-    if (checkin) {
+    if (checkin && !isAdministrator) {
       this.userAlreadyDidCheckinToday(checkin);
     }
 

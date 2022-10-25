@@ -7,7 +7,7 @@ import { Plan, User } from "~/graphql/models";
 
 @Resolver()
 export class PlanResolver {
-  @Authorized("User")
+  @Authorized(["User", "Administrator"])
   @Query(() => [Plan])
   async getPlans() {
     const plans = await prisma.plan.findMany({ include: { user: true } });
@@ -15,7 +15,7 @@ export class PlanResolver {
     return plans;
   }
 
-  @Authorized("User")
+  @Authorized(["User", "Administrator"])
   @Mutation(() => User)
   async choosePlan(@Ctx() context: any, @Arg("id_plan") id_plan: string) {
     const DAYS_TO_PLAN_EXPIRE = 30;
@@ -44,7 +44,7 @@ export class PlanResolver {
     return userUpdated;
   }
 
-  @Authorized("User")
+  @Authorized(["User", "Administrator"])
   @Mutation(() => User)
   async cancelPlan(@Ctx() context: any) {
     const { userId } = context.req;
