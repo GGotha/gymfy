@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Balance {
+  brl_amount: Float!
+  gyc_amount: Float!
+}
+
 type Checkin {
   created_at: DateTime!
   id: ID!
@@ -50,6 +55,7 @@ type Plan {
 }
 
 type Query {
+  getBalance: Balance!
   getPlans: [Plan!]!
 }
 
