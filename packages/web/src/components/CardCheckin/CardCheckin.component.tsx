@@ -1,4 +1,5 @@
 /* eslint-disable import/no-duplicates */
+import { useQueryClient } from "@tanstack/react-query";
 import { GraphQLClient } from "graphql-request";
 import { toast } from "react-toastify";
 import { ButtonComponent } from "~/components/Button";
@@ -7,7 +8,8 @@ import { useCreateCheckinMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 
 const CardCheckinComponent: React.FC = () => {
-  const [user, setUser] = useAuth();
+  const [user] = useAuth();
+  const queryClient = useQueryClient();
 
   const { mutateAsync, isLoading } = useCreateCheckinMutation(
     new GraphQLClient("http://localhost:4000", {
@@ -17,6 +19,7 @@ const CardCheckinComponent: React.FC = () => {
     }),
     {
       onSuccess: () => {
+        queryClient.invalidateQueries(["GetBalance"]);
         return toast.success("Checkin feito com sucesso!");
       },
       onError: (err: any) => {
@@ -36,6 +39,10 @@ const CardCheckinComponent: React.FC = () => {
       },
     },
   );
+
+  function runTest() {
+    mutateAsync({});
+  }
 
   return (
     <>
@@ -61,7 +68,7 @@ const CardCheckinComponent: React.FC = () => {
               height="h-[50px]"
               borderRadius="rounded-2xl"
               width="w-full"
-              onClick={() => mutateAsync({})}
+              onClick={() => runTest()}
             >
               {isLoading ? (
                 <div className="flex justify-center">

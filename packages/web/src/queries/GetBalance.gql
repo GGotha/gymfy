@@ -1,0 +1,6 @@
+query GetBalance {
+  getBalance {
+    brl_amount
+    gyc_amount
+  }
+}

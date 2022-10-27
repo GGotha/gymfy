@@ -21,6 +21,12 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type Balance = {
+  __typename?: 'Balance';
+  brl_amount: Scalars['Float'];
+  gyc_amount: Scalars['Float'];
+};
+
 export type Checkin = {
   __typename?: 'Checkin';
   created_at: Scalars['DateTime'];
@@ -93,6 +99,7 @@ export type Plan = {
 
 export type Query = {
   __typename?: 'Query';
+  getBalance: Balance;
   getPlans: Array<Plan>;
 };
 
@@ -148,6 +155,11 @@ export type CreateCheckinMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CreateCheckinMutation = { __typename?: 'Mutation', createCheckin: { __typename?: 'Checkin', id: string, user: { __typename?: 'User', id: string, name: string, email: string } } };
+
+export type GetBalanceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetBalanceQuery = { __typename?: 'Query', getBalance: { __typename?: 'Balance', brl_amount: number, gyc_amount: number } };
 
 export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -286,6 +298,28 @@ export const useCreateCheckinMutation = <
     useMutation<CreateCheckinMutation, TError, CreateCheckinMutationVariables, TContext>(
       ['CreateCheckin'],
       (variables?: CreateCheckinMutationVariables) => fetcher<CreateCheckinMutation, CreateCheckinMutationVariables>(client, CreateCheckinDocument, variables, headers)(),
+      options
+    );
+export const GetBalanceDocument = `
+    query GetBalance {
+  getBalance {
+    brl_amount
+    gyc_amount
+  }
+}
+    `;
+export const useGetBalanceQuery = <
+      TData = GetBalanceQuery,
+      TError = string
+    >(
+      client: GraphQLClient,
+      variables?: GetBalanceQueryVariables,
+      options?: UseQueryOptions<GetBalanceQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GetBalanceQuery, TError, TData>(
+      variables === undefined ? ['GetBalance'] : ['GetBalance', variables],
+      fetcher<GetBalanceQuery, GetBalanceQueryVariables>(client, GetBalanceDocument, variables, headers),
       options
     );
 export const GetPlansDocument = `

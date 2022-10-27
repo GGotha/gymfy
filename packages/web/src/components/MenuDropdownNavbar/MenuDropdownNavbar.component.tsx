@@ -1,7 +1,8 @@
 import { Menu, Transition } from "@headlessui/react";
 import { CircleStackIcon } from "@heroicons/react/20/solid";
-import { Fragment, useCallback } from "react";
+import { Fragment, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { BalanceContext } from "~/contexts/BalanceContext";
 import { user as userDomain } from "~/globals/Domains";
 import { useAuth } from "~/hooks/useAuth";
 
@@ -12,6 +13,7 @@ type MenuDropdownNavbarComponentProps = {
 const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = ({ children }) => {
   const [user] = useAuth();
   const navigate = useNavigate();
+  const [balance] = useContext(BalanceContext);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem(userDomain);
@@ -49,7 +51,7 @@ const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = 
                   <div className="flex justify-center items-center mb-1">
                     <CircleStackIcon className="h-5 fill-yellow-400 mr-2" aria-hidden="true" />
                     <h1 className="text-white">
-                      0.0005 <span className="text-xs">gyc</span>
+                      {balance.gyc_amount} <span className="text-xs">gyc</span>
                     </h1>
                   </div>
                 )}

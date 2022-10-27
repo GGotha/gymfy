@@ -1,14 +1,34 @@
+import { GraphQLClient } from "graphql-request";
+import { useContext } from "react";
+import FadeIn from "react-fade-in";
 import CardComponent from "~/components/Card/Card.component";
 import { CardActivePlanComponent } from "~/components/CardActivePlan";
 import { CardCheckinComponent } from "~/components/CardCheckin";
 import { CardWalletComponent } from "~/components/CardWallet";
+import { BalanceContext } from "~/contexts/BalanceContext";
+import { useGetBalanceQuery } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
-import FadeIn from "react-fade-in";
 
 const DashboardScreen: React.FC = () => {
   const [user] = useAuth();
+  const [, setBalance] = useContext(BalanceContext);
 
   const { plan } = user;
+
+  useGetBalanceQuery(
+    new GraphQLClient("http://localhost:4000", {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    }),
+    {},
+    {
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setBalance(data?.getBalance);
+      },
+    },
+  );
 
   return (
     <>

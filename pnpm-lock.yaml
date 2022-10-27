@@ -133,6 +133,7 @@ importers:
       react-error-boundary: ^3.1.4
       react-fade-in: ^2.0.1
       react-hook-form: ^7.35.0
+      react-loading-skeleton: ^3.1.0
       react-router-dom: ^6.3.0
       react-toastify: ^9.0.8
       tailwindcss: ^3.1.8
@@ -150,6 +151,7 @@ importers:
       react-error-boundary: 3.1.4_react@18.2.0
       react-fade-in: 2.0.1_react@18.2.0
       react-hook-form: 7.35.0_react@18.2.0
+      react-loading-skeleton: 3.1.0_react@18.2.0
       react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
       react-toastify: 9.0.8_biqbaboplfbrettd7655fr4n2y
     devDependencies:
@@ -12783,6 +12785,14 @@ packages:
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
+
+  /react-loading-skeleton/3.1.0_react@18.2.0:
+    resolution: {integrity: sha512-j1U1CWWs68nBPOg7tkQqnlFcAMFF6oEK6MgqAo15f8A5p7mjH6xyKn2gHbkcimpwfO0VQXqxAswnSYVr8lWzjw==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-merge-refs/1.1.0:
     resolution: {integrity: sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==}
