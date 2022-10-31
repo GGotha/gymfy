@@ -6,15 +6,18 @@ import { LoaderComponent } from "~/components/Loader";
 import { ModalComponent } from "~/components/Modal";
 import { useChoosePlanMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
+import Tooltip from "react-tooltip";
 
 type CardPlanProps = {
   id: string;
   name: string;
+  description: string;
   amount: string;
   image: string;
 };
 
-const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image }) => {
+const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, description, amount, image }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useAuth();
 
@@ -52,6 +55,14 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, amount, image })
   return (
     <>
       <div className="flex flex-col justify-between h-full bg-black rounded-lg p-4">
+        <div className="relative" data-tip data-for={`tooltip-${name}`}>
+          <div className="absolute -top-5 -right-5">
+            <ExclamationCircleIcon className="h-5 fill-neutral-700" aria-hidden="true" />
+          </div>
+        </div>
+        <Tooltip id={`tooltip-${name}`}>
+          <span>{description}</span>
+        </Tooltip>
         <div className="flex justify-center flex-col items-center">
           <h1 className="text-smoothGrey text-base font-quicksand font-semibold mb-8">{name}</h1>
           <h1 className="text-white text-4xl font-saira font-semibold mb-20">

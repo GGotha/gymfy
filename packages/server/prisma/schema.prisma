@@ -60,6 +60,7 @@ model Plan {
   name       String
   brl_amount Decimal   @db.Decimal(15,2)
   image      String   
+  description String   
   created_at DateTime  @db.DateTime  @default(dbgenerated("NOW()"))
   updated_at DateTime? @db.DateTime @default(dbgenerated("NOW() ON UPDATE NOW()"))
 

@@ -43,6 +43,7 @@ const PlanScreen: React.FC = () => {
                       <CardPlanComponent
                         id={plan.id}
                         name={`Plano ${plan.name}`}
+                        description={plan.description}
                         amount={plan.amountFormatted}
                         image={plan.image}
                       />

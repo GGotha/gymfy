@@ -48,6 +48,7 @@ type Notification {
 type Plan {
   brl_amount: Float!
   created_at: DateTime!
+  description: String!
   id: ID!
   image: String!
   name: String!

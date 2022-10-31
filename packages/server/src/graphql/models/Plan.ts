@@ -15,11 +15,11 @@ export class Plan {
   image: string;
 
   @Field()
+  description: string;
+
+  @Field()
   created_at: Date;
 
   @Field()
   updated_at: Date;
-
-  // @Field(() => User)
-  // user: User;
 }

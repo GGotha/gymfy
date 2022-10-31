@@ -4,6 +4,7 @@ query GetPlans {
     name
     brl_amount
     image
+    description
     created_at
     updated_at
     __typename

@@ -87,13 +87,21 @@ export class CheckinResolver {
   }
 
   private decideValueByPlan(userPlanName: string): DecideValueByPlanType {
+    const cashbackRuby = 4.5;
+    const cashbackDiamond = 3.5;
+    const cashbackGold = 2.5;
+
     if (userPlanName === "Ruby") {
-      return { brl_amount: 10, gyc_amount: 50 };
+      return { brl_amount: cashbackRuby, gyc_amount: this.transformBRLToGyc(cashbackRuby) };
     }
     if (userPlanName === "Diamond") {
-      return { brl_amount: 5, gyc_amount: 40 };
+      return { brl_amount: cashbackDiamond, gyc_amount: this.transformBRLToGyc(cashbackDiamond) };
     }
 
-    return { brl_amount: 1, gyc_amount: 10 };
+    return { brl_amount: cashbackGold, gyc_amount: this.transformBRLToGyc(cashbackGold) };
+  }
+
+  private transformBRLToGyc(brl_amount: number): number {
+    return brl_amount * 5;
   }
 }

@@ -91,6 +91,7 @@ export type Plan = {
   __typename?: 'Plan';
   brl_amount: Scalars['Float'];
   created_at: Scalars['DateTime'];
+  description: Scalars['String'];
   id: Scalars['ID'];
   image: Scalars['String'];
   name: Scalars['String'];
@@ -164,7 +165,7 @@ export type GetBalanceQuery = { __typename?: 'Query', getBalance: { __typename?:
 export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPlansQuery = { __typename?: 'Query', getPlans: Array<{ __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any }> };
+export type GetPlansQuery = { __typename?: 'Query', getPlans: Array<{ __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, description: string, created_at: any, updated_at: any }> };
 
 export type RegisterMutationVariables = Exact<{
   name: Scalars['String'];
@@ -329,6 +330,7 @@ export const GetPlansDocument = `
     name
     brl_amount
     image
+    description
     created_at
     updated_at
     __typename
