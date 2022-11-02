@@ -10,14 +10,22 @@ import { LoaderComponent } from "~/components/Loader";
 import { ModalComponent } from "~/components/Modal";
 import { useCancelPlanMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
+import Tooltip from "react-tooltip";
 
 type CardActivePlanProps = {
   name: string;
   image: string;
   expiredAt: string;
+  description: string;
 };
 
-const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, expiredAt }) => {
+const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({
+  name,
+  description,
+  image,
+  expiredAt,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useAuth();
 
@@ -53,6 +61,14 @@ const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({ name, image, e
   return (
     <>
       <div className="flex flex-col justify-between h-full bg-black rounded-lg p-4">
+        <div className="relative" data-tip data-for={`tooltip-${name}`}>
+          <div className="absolute -top-5 -right-5">
+            <ExclamationCircleIcon className="h-5 fill-neutral-700" aria-hidden="true" />
+          </div>
+        </div>
+        <Tooltip id={`tooltip-${name}`}>
+          <span>{description}</span>
+        </Tooltip>
         <div className="flex justify-center flex-col items-center">
           <h1 className="text-smoothGrey text-base font-quicksand font-semibold mb-8">
             Plano Ativo

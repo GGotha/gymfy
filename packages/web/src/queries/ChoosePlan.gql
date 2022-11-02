@@ -3,6 +3,7 @@ mutation ChoosePlan($idPlan: String!) {
     plan {
       id
       name
+      description
       brl_amount
       image
       created_at

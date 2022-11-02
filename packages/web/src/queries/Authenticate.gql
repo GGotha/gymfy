@@ -16,6 +16,7 @@ mutation Authenticate($password: String!, $email: String!) {
       plan {
         id
         name
+        description
         brl_amount
         image
         created_at

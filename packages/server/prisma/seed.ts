@@ -67,7 +67,7 @@ async function main() {
       name: "Ruby",
       brl_amount: 129.99,
       image: "http://localhost:3000/ruby.svg",
-      description: "Ao comprar o plano Ruby, você receberá 4 reais e 50 centavos por Checkin",
+      description: "Você receberá 4 reais e 50 centavos por Checkin",
     },
   });
 
@@ -78,7 +78,7 @@ async function main() {
       name: "Diamond",
       brl_amount: 99.99,
       image: "http://localhost:3000/diamond.svg",
-      description: "Ao comprar o plano Diamond, você receberá 3 reais e 50 centavos por Checkin",
+      description: "Você receberá 3 reais e 50 centavos por Checkin",
     },
   });
 
@@ -89,7 +89,7 @@ async function main() {
       name: "Gold",
       brl_amount: 69.99,
       image: "http://localhost:3000/gold.svg",
-      description: "Ao comprar o plano Gold, você receberá 2 reais e 50 centavos por Checkin",
+      description: "Você receberá 2 reais e 50 centavos por Checkin",
     },
   });
 

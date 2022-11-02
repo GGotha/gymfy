@@ -47,6 +47,7 @@ const DashboardScreen: React.FC = () => {
                 <CardComponent width="w-[366px]" height="h-[445px]">
                   <CardActivePlanComponent
                     name={plan.name}
+                    description={plan.description}
                     image={plan.image}
                     expiredAt={user.plan_expired_at}
                   />

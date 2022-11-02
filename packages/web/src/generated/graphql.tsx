@@ -138,7 +138,7 @@ export type AuthenticateMutationVariables = Exact<{
 }>;
 
 
-export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, id_plan?: string | null, plan_expired_at?: any | null, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any }, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } } };
+export type AuthenticateMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, id_plan?: string | null, plan_expired_at?: any | null, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any }, plan?: { __typename: 'Plan', id: string, name: string, description: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } } };
 
 export type CancelPlanMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -150,7 +150,7 @@ export type ChoosePlanMutationVariables = Exact<{
 }>;
 
 
-export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan_expired_at?: any | null, plan?: { __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
+export type ChoosePlanMutation = { __typename?: 'Mutation', choosePlan: { __typename?: 'User', plan_expired_at?: any | null, plan?: { __typename: 'Plan', id: string, name: string, description: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } };
 
 export type CreateCheckinMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -196,6 +196,7 @@ export const AuthenticateDocument = `
       plan {
         id
         name
+        description
         brl_amount
         image
         created_at
@@ -253,6 +254,7 @@ export const ChoosePlanDocument = `
     plan {
       id
       name
+      description
       brl_amount
       image
       created_at
