@@ -41,6 +41,12 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, description, amo
       onError: (err: any) => {
         const errMessage = err.response.errors[0].message;
 
+        if (errMessage === "You don´t have money to buy this plan! Please do a Recharge") {
+          return toast.error(
+            "Você não tem saldo para realizar a compra deste plano! Por favor, faça uma recarga!",
+          );
+        }
+
         if (errMessage === "You already have a plan!") {
           return toast.error("Você já tem um plano ativo!");
         }

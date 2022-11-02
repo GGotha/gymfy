@@ -3,7 +3,7 @@ import { addDays } from "date-fns";
 import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from "type-graphql";
 
 import { prisma } from "~/externals/orm";
-import { Plan, User } from "~/graphql/models";
+import { Plan, User, Balance } from "~/graphql/models";
 
 @Resolver()
 export class PlanResolver {
@@ -35,6 +35,14 @@ export class PlanResolver {
       throw new ValidationError("You already have a plan!");
     }
 
+    const { brl_amount } = await Balance.getUserBalance(userId);
+
+    if (!this.userHasBalance(brl_amount, Number(plan.brl_amount))) {
+      throw new ValidationError("You don´t have money to buy this plan! Please do a Recharge");
+    }
+
+    this.withdrawFromBalance(userId, Number(plan.brl_amount));
+
     const userUpdated = await prisma.user.update({
       where: { id: user.id },
       data: { id_plan, plan_expired_at: addDays(new Date(), DAYS_TO_PLAN_EXPIRE) },
@@ -61,5 +69,28 @@ export class PlanResolver {
     });
 
     return user;
+  }
+
+  private userHasBalance(brl_amount: number, planPrice: number): boolean {
+    return brl_amount > planPrice;
+  }
+
+  private async withdrawFromBalance(userId: string, planPrice: number) {
+    const transactionType = await prisma.transactionType.findFirst({
+      where: { name: "Outgoing" },
+    });
+
+    if (!transactionType) {
+      throw new ValidationError("Sorry! We didn´t find this transaction type!");
+    }
+
+    await prisma.transaction.create({
+      data: {
+        id_user: userId,
+        id_type: transactionType.id,
+        brl_amount: planPrice,
+        gyc_amount: Balance.transformBRLToGyc(planPrice),
+      },
+    });
   }
 }

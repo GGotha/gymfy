@@ -4,7 +4,7 @@ import { Authorized, Ctx, Mutation, Resolver } from "type-graphql";
 
 import { Checkin as CheckinPrisma, Prisma, User as UserPrisma } from "@prisma/client";
 import { prisma } from "~/externals/orm";
-import { Checkin } from "~/graphql/models";
+import { Checkin, Balance } from "~/graphql/models";
 
 type DecideValueByPlanType = {
   brl_amount: number;
@@ -82,7 +82,7 @@ export class CheckinResolver {
     const { brl_amount, gyc_amount } = this.decideValueByPlan(userPlanName!);
 
     await prisma.transaction.create({
-      data: { id_user: user.id, id_type: transactionType!.id, brl_amount, gyc_amount },
+      data: { id_user: user.id, id_type: transactionType.id, brl_amount, gyc_amount },
     });
   }
 
@@ -92,16 +92,15 @@ export class CheckinResolver {
     const cashbackGold = 2.5;
 
     if (userPlanName === "Ruby") {
-      return { brl_amount: cashbackRuby, gyc_amount: this.transformBRLToGyc(cashbackRuby) };
+      return { brl_amount: cashbackRuby, gyc_amount: Balance.transformBRLToGyc(cashbackRuby) };
     }
     if (userPlanName === "Diamond") {
-      return { brl_amount: cashbackDiamond, gyc_amount: this.transformBRLToGyc(cashbackDiamond) };
+      return {
+        brl_amount: cashbackDiamond,
+        gyc_amount: Balance.transformBRLToGyc(cashbackDiamond),
+      };
     }
 
-    return { brl_amount: cashbackGold, gyc_amount: this.transformBRLToGyc(cashbackGold) };
-  }
-
-  private transformBRLToGyc(brl_amount: number): number {
-    return brl_amount * 5;
+    return { brl_amount: cashbackGold, gyc_amount: Balance.transformBRLToGyc(cashbackGold) };
   }
 }

@@ -34,6 +34,8 @@ type Mutation {
   choosePlan(id_plan: String!): User!
   createCheckin: Checkin!
   createNotification(id_event: String!, id_user: String!): Notification!
+  rechargeWithCreditCard(amount: Float!, cardCvv: String!, cardHolder: String!, cardNumber: String!, cardValidThru: String!): Transaction!
+  rechargeWithPIX(amount: Float!): Transaction!
   register(email: String!, name: String!, password: String!): UserResponse!
 }
 
@@ -64,6 +66,21 @@ type Role {
   active: Boolean
   created_at: DateTime!
   id: String!
+  name: String!
+  updated_at: DateTime!
+}
+
+type Transaction {
+  created_at: DateTime!
+  id: ID!
+  type: TransactionType!
+  updated_at: DateTime!
+  user: User!
+}
+
+type TransactionType {
+  created_at: DateTime!
+  id: ID!
   name: String!
   updated_at: DateTime!
 }

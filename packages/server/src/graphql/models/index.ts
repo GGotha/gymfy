@@ -4,3 +4,6 @@ export * from "./Checkin";
 export * from "./Plan";
 export * from "./Notification";
 export * from "./Event";
+export * from "./Balance";
+export * from "./Transaction";
+export * from "./TransactionType";
