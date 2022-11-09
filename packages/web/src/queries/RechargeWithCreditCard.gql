@@ -1,0 +1,19 @@
+mutation RechargeWithCreditCard(
+  $cardCvv: String!
+  $cardValidThru: String!
+  $cardHolder: String!
+  $cardNumber: String!
+  $amount: Float!
+) {
+  rechargeWithCreditCard(
+    cardCvv: $cardCvv
+    cardValidThru: $cardValidThru
+    cardHolder: $cardHolder
+    cardNumber: $cardNumber
+    amount: $amount
+  ) {
+    id
+    created_at
+    __typename
+  }
+}

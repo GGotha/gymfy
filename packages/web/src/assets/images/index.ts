@@ -5,6 +5,8 @@ export { default as facebookIcon } from "./facebook.svg";
 export { default as settingsIcon } from "./settings.svg";
 export { default as hammerIcon } from "./hammer.svg";
 export { default as heartIcon } from "./heart.svg";
+export { default as creditCardIcon } from "./credit_card.svg";
+export { default as pixIcon } from "./pix.png";
 export { default as helpIcon } from "./help.svg";
 export { default as houseIcon } from "./house.svg";
 export { default as instagramIcon } from "./instagram.svg";

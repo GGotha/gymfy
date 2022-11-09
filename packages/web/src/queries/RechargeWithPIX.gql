@@ -1,0 +1,7 @@
+mutation RechargeWithPIX($amount: Float!) {
+  rechargeWithPIX(amount: $amount) {
+    id
+    created_at
+    __typename
+  }
+}

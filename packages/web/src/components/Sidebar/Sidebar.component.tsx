@@ -3,7 +3,7 @@ import {
   ethereumIcon,
   gymfyWithTextIcon,
   hammerIcon,
-  heartIcon,
+  creditCardIcon,
   helpIcon,
   houseIcon,
   marketplaceIcon,
@@ -26,7 +26,7 @@ enum SidebarEnum {
   dashboard = "Início",
   plan = "Planos",
   marketplace = "Mercado",
-  favorites = "Favoritos",
+  recharge = "Recarga",
   wallets = "Carteiras",
   bitcoin = "Bitcoin",
   ethereum = "Ethereum",
@@ -39,7 +39,7 @@ const SIDEBAR_LIST: Array<SidebarListProps> = [
   { name: SidebarEnum.dashboard, icon: houseIcon, path: "/dashboard" },
   { name: SidebarEnum.plan, icon: hammerIcon, path: "/plan" },
   { name: SidebarEnum.marketplace, icon: marketplaceIcon, path: "/dashboard" },
-  { name: SidebarEnum.favorites, icon: heartIcon, path: "/dashboard" },
+  { name: SidebarEnum.recharge, icon: creditCardIcon, path: "/recharge" },
   { name: SidebarEnum.wallets, icon: plusIcon, path: "/dashboard" },
   { name: SidebarEnum.bitcoin, icon: bitcoinIcon, path: "/dashboard" },
   { name: SidebarEnum.ethereum, icon: ethereumIcon, path: "/dashboard" },
@@ -72,7 +72,7 @@ const SidebarComponent: React.FC = () => {
               hasNotifications={index === 2}
               path={option.path}
             />
-            {option.name === SidebarEnum.favorites || option.name === SidebarEnum.usdCoin ? (
+            {option.name === SidebarEnum.recharge || option.name === SidebarEnum.usdCoin ? (
               <div className="border border-sidebarDivider w-full my-8" />
             ) : (
               ""

@@ -18,11 +18,11 @@ const CardWalletComponent: React.FC = () => {
             </h1>
             <h1 className="text-white text-3xl font-saira font-semibold">
               <span className="text-xl">GYC </span>
-              {balance.gyc_amount}
+              {balance.gyc_amount ? balance.gyc_amount.toFixed(2) : 0}
             </h1>
             <h1 className="text-white text-3xl font-saira font-semibold mb-7">
               <span className="text-xl">BRL </span>
-              {balance.brl_amount}
+              {balance.brl_amount ? balance.brl_amount.toFixed(2) : 0}
             </h1>
             <div className="flex justify-between w-full">
               <div className="flex flex-col items-center">

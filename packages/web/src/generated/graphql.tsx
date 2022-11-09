@@ -51,6 +51,8 @@ export type Mutation = {
   choosePlan: User;
   createCheckin: Checkin;
   createNotification: Notification;
+  rechargeWithCreditCard: Transaction;
+  rechargeWithPIX: Transaction;
   register: UserResponse;
 };
 
@@ -69,6 +71,20 @@ export type MutationChoosePlanArgs = {
 export type MutationCreateNotificationArgs = {
   id_event: Scalars['String'];
   id_user: Scalars['String'];
+};
+
+
+export type MutationRechargeWithCreditCardArgs = {
+  amount: Scalars['Float'];
+  cardCvv: Scalars['String'];
+  cardHolder: Scalars['String'];
+  cardNumber: Scalars['String'];
+  cardValidThru: Scalars['String'];
+};
+
+
+export type MutationRechargeWithPixArgs = {
+  amount: Scalars['Float'];
 };
 
 
@@ -109,6 +125,23 @@ export type Role = {
   active?: Maybe<Scalars['Boolean']>;
   created_at: Scalars['DateTime'];
   id: Scalars['String'];
+  name: Scalars['String'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type Transaction = {
+  __typename?: 'Transaction';
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
+  type: TransactionType;
+  updated_at: Scalars['DateTime'];
+  user: User;
+};
+
+export type TransactionType = {
+  __typename?: 'TransactionType';
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
   name: Scalars['String'];
   updated_at: Scalars['DateTime'];
 };
@@ -166,6 +199,24 @@ export type GetPlansQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPlansQuery = { __typename?: 'Query', getPlans: Array<{ __typename: 'Plan', id: string, name: string, brl_amount: number, image: string, description: string, created_at: any, updated_at: any }> };
+
+export type RechargeWithCreditCardMutationVariables = Exact<{
+  cardCvv: Scalars['String'];
+  cardValidThru: Scalars['String'];
+  cardHolder: Scalars['String'];
+  cardNumber: Scalars['String'];
+  amount: Scalars['Float'];
+}>;
+
+
+export type RechargeWithCreditCardMutation = { __typename?: 'Mutation', rechargeWithCreditCard: { __typename: 'Transaction', id: string, created_at: any } };
+
+export type RechargeWithPixMutationVariables = Exact<{
+  amount: Scalars['Float'];
+}>;
+
+
+export type RechargeWithPixMutation = { __typename?: 'Mutation', rechargeWithPIX: { __typename: 'Transaction', id: string, created_at: any } };
 
 export type RegisterMutationVariables = Exact<{
   name: Scalars['String'];
@@ -351,6 +402,56 @@ export const useGetPlansQuery = <
     useQuery<GetPlansQuery, TError, TData>(
       variables === undefined ? ['GetPlans'] : ['GetPlans', variables],
       fetcher<GetPlansQuery, GetPlansQueryVariables>(client, GetPlansDocument, variables, headers),
+      options
+    );
+export const RechargeWithCreditCardDocument = `
+    mutation RechargeWithCreditCard($cardCvv: String!, $cardValidThru: String!, $cardHolder: String!, $cardNumber: String!, $amount: Float!) {
+  rechargeWithCreditCard(
+    cardCvv: $cardCvv
+    cardValidThru: $cardValidThru
+    cardHolder: $cardHolder
+    cardNumber: $cardNumber
+    amount: $amount
+  ) {
+    id
+    created_at
+    __typename
+  }
+}
+    `;
+export const useRechargeWithCreditCardMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<RechargeWithCreditCardMutation, TError, RechargeWithCreditCardMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<RechargeWithCreditCardMutation, TError, RechargeWithCreditCardMutationVariables, TContext>(
+      ['RechargeWithCreditCard'],
+      (variables?: RechargeWithCreditCardMutationVariables) => fetcher<RechargeWithCreditCardMutation, RechargeWithCreditCardMutationVariables>(client, RechargeWithCreditCardDocument, variables, headers)(),
+      options
+    );
+export const RechargeWithPixDocument = `
+    mutation RechargeWithPIX($amount: Float!) {
+  rechargeWithPIX(amount: $amount) {
+    id
+    created_at
+    __typename
+  }
+}
+    `;
+export const useRechargeWithPixMutation = <
+      TError = string,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<RechargeWithPixMutation, TError, RechargeWithPixMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<RechargeWithPixMutation, TError, RechargeWithPixMutationVariables, TContext>(
+      ['RechargeWithPIX'],
+      (variables?: RechargeWithPixMutationVariables) => fetcher<RechargeWithPixMutation, RechargeWithPixMutationVariables>(client, RechargeWithPixDocument, variables, headers)(),
       options
     );
 export const RegisterDocument = `
