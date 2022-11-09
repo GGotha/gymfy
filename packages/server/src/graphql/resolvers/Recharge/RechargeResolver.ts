@@ -22,6 +22,10 @@ export class RechargeResolver {
       throw new ValidationError("Sorry! We didn´t find your user");
     }
 
+    if (!amount) {
+      throw new ValidationError("Sorry! You need put valid information!");
+    }
+
     const transactionType = await prisma.transactionType.findFirst({
       where: { name: INCOMING },
     });
@@ -61,6 +65,10 @@ export class RechargeResolver {
 
     if (!user) {
       throw new ValidationError("Sorry! We didn´t find your user");
+    }
+
+    if (!amount || !cardNumber || !cardHolder || !cardValidThru || !cardCvv) {
+      throw new ValidationError("Sorry! You need put valid information!");
     }
 
     const transactionType = await prisma.transactionType.findFirst({
