@@ -9,6 +9,7 @@ import { BalanceContext } from "~/contexts/BalanceContext";
 import { useGetBalanceQuery } from "~/generated/graphql";
 import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
+import { rubyIcon, diamondIcon, goldIcon } from "~/assets/images";
 
 const DashboardScreen: React.FC = () => {
   const [user] = useAuth();
@@ -31,6 +32,18 @@ const DashboardScreen: React.FC = () => {
     },
   );
 
+  function decideWhichImageUse(namePlan: string): string {
+    if (namePlan === "Ruby") {
+      return rubyIcon;
+    }
+
+    if (namePlan === "Diamond") {
+      return diamondIcon;
+    }
+
+    return goldIcon;
+  }
+
   return (
     <>
       <div className="bg-black bg-opacity-95 h-full w-full p-8 flex">
@@ -49,7 +62,7 @@ const DashboardScreen: React.FC = () => {
                   <CardActivePlanComponent
                     name={plan.name}
                     description={plan.description}
-                    image={plan.image}
+                    image={decideWhichImageUse(plan.name)}
                     expiredAt={user.plan_expired_at}
                   />
                 </CardComponent>
