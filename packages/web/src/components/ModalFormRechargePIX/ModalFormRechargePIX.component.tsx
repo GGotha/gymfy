@@ -1,11 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useQueryClient } from "@tanstack/react-query";
 import { GraphQLClient } from "graphql-request";
 import { Fragment, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { InputComponent } from "~/components/Input";
 import { useRechargeWithPixMutation } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
 
 type ModalComponentProps = {
@@ -27,7 +27,7 @@ const ModalFormRechargePIXComponent: React.FC<ModalComponentProps> = ({
   const { register, handleSubmit } = useForm<PixType>();
 
   const { mutateAsync, isSuccess } = useRechargeWithPixMutation(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

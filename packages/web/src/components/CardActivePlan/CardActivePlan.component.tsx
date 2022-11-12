@@ -1,17 +1,18 @@
 /* eslint-disable import/no-duplicates */
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { parseISO } from "date-fns/esm";
+import { ptBR } from "date-fns/locale";
 import { GraphQLClient } from "graphql-request";
 import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
+import Tooltip from "react-tooltip";
 import { ButtonComponent } from "~/components/Button";
 import { LoaderComponent } from "~/components/Loader";
 import { ModalComponent } from "~/components/Modal";
 import { useCancelPlanMutation } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
-import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
-import Tooltip from "react-tooltip";
 
 type CardActivePlanProps = {
   name: string;
@@ -36,7 +37,7 @@ const CardActivePlanComponent: React.FC<CardActivePlanProps> = ({
   }, []);
 
   const { mutateAsync, isLoading } = useCancelPlanMutation(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

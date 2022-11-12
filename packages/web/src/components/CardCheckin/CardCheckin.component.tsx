@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { ButtonComponent } from "~/components/Button";
 import { LoaderComponent } from "~/components/Loader";
 import { useCreateCheckinMutation } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
 
 const CardCheckinComponent: React.FC = () => {
@@ -12,7 +13,7 @@ const CardCheckinComponent: React.FC = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync, isLoading } = useCreateCheckinMutation(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

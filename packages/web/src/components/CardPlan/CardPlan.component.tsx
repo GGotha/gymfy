@@ -8,6 +8,7 @@ import { useChoosePlanMutation } from "~/generated/graphql";
 import { useAuth } from "~/hooks/useAuth";
 import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 import Tooltip from "react-tooltip";
+import { API_URL } from "~/globals/graphql-client";
 
 type CardPlanProps = {
   id: string;
@@ -22,7 +23,7 @@ const CardPlanComponent: React.FC<CardPlanProps> = ({ id, name, description, amo
   const [user, setUser] = useAuth();
 
   const { mutateAsync, isLoading } = useChoosePlanMutation(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

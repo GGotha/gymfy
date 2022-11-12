@@ -1,21 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { GraphQLClient } from "graphql-request";
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { InputComponent } from "~/components/Input";
 import { useRechargeWithCreditCardMutation } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
 
 type ModalComponentProps = {
   name: string;
   isOpen: boolean;
   closeModal: any;
-};
-
-type CardRechargeProps = {
-  name: string;
-  image: string;
 };
 
 type CreditCardType = {
@@ -35,7 +31,7 @@ const ModalFormRechargeCreditCardComponent: React.FC<ModalComponentProps> = ({
   const { register, handleSubmit } = useForm<CreditCardType>();
 
   const { mutateAsync, isSuccess } = useRechargeWithCreditCardMutation(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

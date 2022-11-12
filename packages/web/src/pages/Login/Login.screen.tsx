@@ -1,4 +1,6 @@
+import { GraphQLClient } from "graphql-request";
 import { useCallback } from "react";
+import FadeIn from "react-fade-in";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,9 +10,8 @@ import { CardComponent } from "~/components/Card";
 import { InputComponent } from "~/components/Input";
 import { LoaderComponent } from "~/components/Loader";
 import { useAuthenticateMutation } from "~/generated/graphql";
-import { graphQLClient } from "~/globals/graphql-client";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
-import FadeIn from "react-fade-in";
 
 type LoginAuthenticate = {
   email: string;
@@ -22,26 +23,29 @@ const LoginScreen: React.FC = () => {
   const { register, handleSubmit } = useForm<LoginAuthenticate>();
   const [, setStateUser] = useAuth();
 
-  const { mutateAsync, isLoading, isSuccess } = useAuthenticateMutation(graphQLClient, {
-    onSuccess: (data) => {
-      const { user, token } = data.authenticate;
+  const { mutateAsync, isLoading, isSuccess } = useAuthenticateMutation(
+    new GraphQLClient(API_URL),
+    {
+      onSuccess: (data) => {
+        const { user, token } = data.authenticate;
 
-      setStateUser({ ...user, token });
+        setStateUser({ ...user, token });
 
-      navigate("/dashboard");
+        navigate("/dashboard");
+      },
+      onError: (err: any) => {
+        const errMessage = err.response.errors[0].message;
+
+        if (errMessage === "E-mail or password invalid") {
+          return toast.error("Senha Inválida, tente novamente!");
+        }
+
+        return toast.error(
+          "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
+        );
+      },
     },
-    onError: (err: any) => {
-      const errMessage = err.response.errors[0].message;
-
-      if (errMessage === "E-mail or password invalid") {
-        return toast.error("Senha Inválida, tente novamente!");
-      }
-
-      return toast.error(
-        "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
-      );
-    },
-  });
+  );
 
   const onSubmit = useCallback(
     (data: LoginAuthenticate) => {

@@ -1,16 +1,17 @@
 import { GraphQLClient } from "graphql-request";
+import FadeIn from "react-fade-in";
 import CardComponent from "~/components/Card/Card.component";
 import { CardPlanComponent } from "~/components/CardPlan";
 import { LoaderComponent } from "~/components/Loader";
 import { useGetPlansQuery } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
-import FadeIn from "react-fade-in";
 
 const PlanScreen: React.FC = () => {
   const [user] = useAuth();
 
   const { data, isFetching } = useGetPlansQuery(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

@@ -7,6 +7,7 @@ import { CardCheckinComponent } from "~/components/CardCheckin";
 import { CardWalletComponent } from "~/components/CardWallet";
 import { BalanceContext } from "~/contexts/BalanceContext";
 import { useGetBalanceQuery } from "~/generated/graphql";
+import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
 
 const DashboardScreen: React.FC = () => {
@@ -16,7 +17,7 @@ const DashboardScreen: React.FC = () => {
   const { plan } = user;
 
   useGetBalanceQuery(
-    new GraphQLClient("http://localhost:4000", {
+    new GraphQLClient(API_URL, {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
