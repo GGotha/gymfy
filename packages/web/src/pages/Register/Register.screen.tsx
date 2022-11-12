@@ -31,7 +31,13 @@ const RegisterScreen: React.FC = () => {
 
       navigate("/dashboard");
     },
-    onError: () => {
+    onError: (err: any) => {
+      const errMessage = err.response.errors[0].message;
+
+      if (errMessage === "This user already exists!") {
+        return toast.error("Já existe um usuário com este e-mail! Tente outro e-mail, por favor.");
+      }
+
       return toast.error(
         "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
       );
