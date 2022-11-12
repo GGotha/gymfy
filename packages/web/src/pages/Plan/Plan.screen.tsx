@@ -6,6 +6,7 @@ import { LoaderComponent } from "~/components/Loader";
 import { useGetPlansQuery } from "~/generated/graphql";
 import { API_URL } from "~/globals/graphql-client";
 import { useAuth } from "~/hooks/useAuth";
+import { rubyIcon, diamondIcon, goldIcon } from "~/assets/images";
 
 const PlanScreen: React.FC = () => {
   const [user] = useAuth();
@@ -28,6 +29,18 @@ const PlanScreen: React.FC = () => {
       });
   }
 
+  function decideWhichImageUse(namePlan: string): string {
+    if (namePlan === "Ruby") {
+      return rubyIcon;
+    }
+
+    if (namePlan === "Diamond") {
+      return diamondIcon;
+    }
+
+    return goldIcon;
+  }
+
   return (
     <>
       <div className="bg-black bg-opacity-95 h-full w-full p-8 flex">
@@ -46,7 +59,7 @@ const PlanScreen: React.FC = () => {
                         name={`Plano ${plan.name}`}
                         description={plan.description}
                         amount={plan.amountFormatted}
-                        image={plan.image}
+                        image={decideWhichImageUse(plan.name)}
                       />
                     </CardComponent>
                     <div className="ml-40" />
