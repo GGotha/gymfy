@@ -7,3 +7,4 @@ jest.config.js
 *.generated.ts
 generated
 packages/web/src/generated
+packages/token
