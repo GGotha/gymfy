@@ -51,7 +51,8 @@ const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = 
                   <div className="flex justify-center items-center mb-1">
                     <CircleStackIcon className="h-5 fill-yellow-400 mr-2" aria-hidden="true" />
                     <h1 className="text-white">
-                      {balance.gyc_amount} <span className="text-xs">gyc</span>
+                      {balance.gyc_amount ? balance.gyc_amount.toFixed(2) : 0}
+                      <span className="text-xs">gyc</span>
                     </h1>
                   </div>
                 )}
