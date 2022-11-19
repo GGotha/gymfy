@@ -29,9 +29,6 @@ importers:
       turbo: 1.4.5
       typescript: 4.8.2
 
-  packages/colors:
-    specifiers: {}
-
   packages/server:
     specifiers:
       '@graphql-codegen/cli': 2.6.2

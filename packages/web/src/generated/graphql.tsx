@@ -225,7 +225,7 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any } } } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', token: string, user: { __typename: 'User', id: string, name: string, email: string, id_plan?: string | null, plan_expired_at?: any | null, created_at: any, updated_at: any, role: { __typename: 'Role', id: string, name: string, active?: boolean | null, created_at: any, updated_at: any }, plan?: { __typename: 'Plan', id: string, name: string, description: string, brl_amount: number, image: string, created_at: any, updated_at: any } | null } } };
 
 
 export const AuthenticateDocument = `
@@ -461,6 +461,7 @@ export const RegisterDocument = `
       id
       name
       email
+      id_plan
       role {
         id
         name
@@ -469,6 +470,17 @@ export const RegisterDocument = `
         updated_at
         __typename
       }
+      plan {
+        id
+        name
+        description
+        brl_amount
+        image
+        created_at
+        updated_at
+        __typename
+      }
+      plan_expired_at
       created_at
       updated_at
       __typename

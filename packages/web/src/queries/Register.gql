@@ -4,6 +4,7 @@ mutation Register($name: String!, $password: String!, $email: String!) {
       id
       name
       email
+      id_plan
       role {
         id
         name
@@ -12,6 +13,17 @@ mutation Register($name: String!, $password: String!, $email: String!) {
         updated_at
         __typename
       }
+      plan {
+        id
+        name
+        description
+        brl_amount
+        image
+        created_at
+        updated_at
+        __typename
+      }
+      plan_expired_at
       created_at
       updated_at
       __typename
