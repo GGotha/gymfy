@@ -26,6 +26,7 @@ module.exports = {
         gradientTwo: "#EB001B",
         gyRed: "#EB001B",
         gyGreen: "#34D178",
+        metamask: "#e8821e",
       },
     },
   },

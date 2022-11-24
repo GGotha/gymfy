@@ -10,11 +10,11 @@ const RechargeScreen: React.FC = () => {
         <FadeIn>
           <h1 className="text-white text-2xl font-saira font-semibold mb-5">Recarga</h1>
           <div className="flex items-center justify-center">
-            <CardComponent width="w-[366px]" height="h-[305px]">
+            <CardComponent size={{ height: "h-[305px]", width: "w-[366px]" }}>
               <CardRechargeComponent name="Cartão de Crédito" image={creditCardIcon} />
             </CardComponent>
             <div className="ml-40" />
-            <CardComponent width="w-[366px]" height="h-[305px]">
+            <CardComponent size={{ height: "h-[305px]", width: "w-[366px]" }}>
               <CardRechargeComponent name="PIX" image={pixIcon} />
             </CardComponent>
           </div>

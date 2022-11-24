@@ -7,7 +7,7 @@ import { user as userDomain } from "~/globals/Domains";
 import { useAuth } from "~/hooks/useAuth";
 
 type MenuDropdownNavbarComponentProps = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const MenuDropdownNavbarComponent: React.FC<MenuDropdownNavbarComponentProps> = ({ children }) => {

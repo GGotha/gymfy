@@ -1,113 +1,37 @@
-import { GraphQLClient } from "graphql-request";
-import { useCallback } from "react";
 import FadeIn from "react-fade-in";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { gymfyWithTextIcon } from "~/assets/images";
-import { ButtonComponent } from "~/components/Button";
+import { coinbaseIcon, metamaskIcon, trustwalletIcon } from "~/assets/images";
 import { CardComponent } from "~/components/Card";
-import { InputComponent } from "~/components/Input";
-import { LoaderComponent } from "~/components/Loader";
-import { useAuthenticateMutation } from "~/generated/graphql";
-import { API_URL } from "~/globals/graphql-client";
-import { useAuth } from "~/hooks/useAuth";
-
-type LoginAuthenticate = {
-  email: string;
-  password: string;
-};
 
 const LoginScreen: React.FC = () => {
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<LoginAuthenticate>();
-  const [, setStateUser] = useAuth();
-
-  const { mutateAsync, isLoading, isSuccess } = useAuthenticateMutation(
-    new GraphQLClient(API_URL),
-    {
-      onSuccess: (data) => {
-        const { user, token } = data.authenticate;
-
-        setStateUser({ ...user, token });
-
-        navigate("/dashboard");
-      },
-      onError: (err: any) => {
-        const errMessage = err.response.errors[0].message;
-
-        if (errMessage === "E-mail or password invalid") {
-          return toast.error("Senha Inválida, tente novamente!");
-        }
-
-        return toast.error(
-          "Ocorreu uma falha com o servidor, por favor, tente novamente! Caso a falha persista, contate um administrador!",
-        );
-      },
-    },
-  );
-
-  const onSubmit = useCallback(
-    (data: LoginAuthenticate) => {
-      const { email, password } = data;
-
-      mutateAsync({ email, password });
-    },
-    [isSuccess],
-  );
-
   return (
     <>
       <div className="bg-[url('./assets/images/wallpaper.jpg')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full">
         <FadeIn className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
-          <CardComponent height="h-[520px]">
-            <div className="flex justify-center pt-10">
-              <img src={gymfyWithTextIcon} alt="logo" width={140} />
+          <CardComponent size={{ height: "h-[520px]", width: "w-[800px]" }}>
+            <div className="my-5 mx-5">
+              <h1 className="text-4xl text-white font-saira">Conectar carteira</h1>
             </div>
-            <div className="flex items-center flex-col h-full px-5 pt-16">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <InputComponent
-                  placeholder="E-mail"
-                  type="email"
-                  props={{ ...register("email") }}
-                />
-                <div className="my-2" />
-                <InputComponent
-                  placeholder="Senha"
-                  type="password"
-                  props={{ ...register("password") }}
-                />
-                <div className="mb-5" />
-                <div className="w-full">
-                  <ButtonComponent
-                    backgroundColor="bg-gradientOne"
-                    backgroundColorHover="hover:bg-zinc-900"
-                    hasBackgroundShadow={false}
-                    width="w-full"
-                  >
-                    {isLoading ? (
-                      <div className="flex justify-center">
-                        <LoaderComponent />
-                      </div>
-                    ) : (
-                      "Entrar"
-                    )}
-                  </ButtonComponent>
-                </div>
-                <div className="flex justify-center mt-2">
-                  <h1 className="text-primaryGrey text-sm">
-                    <span
-                      onClick={() => {
-                        navigate("/register");
-                      }}
-                      className="cursor-pointer underline"
-                    >
-                      Clique aqui
-                    </span>{" "}
-                    para se cadastrar
-                  </h1>
-                </div>
-              </form>
+            <div className="mt-10 h-full">
+              <div className="flex justify-evenly items-center h-2/3">
+                <CardComponent size={{ height: "auto", width: "w-[180px]" }} hasBounceAnimation>
+                  <div className="flex flex-col items-center">
+                    <img src={metamaskIcon} alt="metamask" width={90} />
+                    <h3 className="text-white font-saira">Metamask</h3>
+                  </div>
+                </CardComponent>
+                <CardComponent size={{ height: "auto", width: "w-[180px]" }}>
+                  <div className="flex flex-col items-center opacity-30">
+                    <img src={coinbaseIcon} alt="coinbase" width={80} className="mb-2" />
+                    <h3 className="text-white font-saira">Coinbase Wallet</h3>
+                  </div>
+                </CardComponent>
+                <CardComponent size={{ height: "auto", width: "w-[180px]" }}>
+                  <div className="flex flex-col items-center opacity-30">
+                    <img src={trustwalletIcon} alt="trustwallet" width={80} className="mb-2" />
+                    <h3 className="text-white font-saira">Trust Wallet</h3>
+                  </div>
+                </CardComponent>
+              </div>
             </div>
           </CardComponent>
         </FadeIn>

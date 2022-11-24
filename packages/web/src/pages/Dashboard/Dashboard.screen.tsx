@@ -58,7 +58,7 @@ const DashboardScreen: React.FC = () => {
               <></>
             ) : (
               <div className="mr-20">
-                <CardComponent width="w-[366px]" height="h-[445px]">
+                <CardComponent size={{ height: "h-[445px]", width: "w-[366px]" }}>
                   <CardActivePlanComponent
                     name={plan.name}
                     description={plan.description}
@@ -68,7 +68,7 @@ const DashboardScreen: React.FC = () => {
                 </CardComponent>
               </div>
             )}
-            <CardComponent width="w-[366px]" height="h-[275px]">
+            <CardComponent size={{ height: "h-[275px]", width: "w-[366px]" }}>
               <CardCheckinComponent />
             </CardComponent>
           </div>

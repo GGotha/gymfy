@@ -57,7 +57,7 @@ const RegisterScreen: React.FC = () => {
     <>
       <div className="bg-[url('./assets/images/wallpaper.jpg')] bg-no-repeat bg-cover h-screen 2xl:h-full w-full">
         <FadeIn className="bg-black bg-opacity-90 h-screen w-full min-h-[900px] flex justify-center items-center">
-          <CardComponent height="h-[520px]">
+          <CardComponent size={{ height: "h-[520px]" }}>
             <div className="flex justify-center pt-10">
               <img src={gymfyWithTextIcon} alt="logo" width={140} />
             </div>

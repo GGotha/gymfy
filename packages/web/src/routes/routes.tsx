@@ -6,12 +6,12 @@ const RoutesComponent: React.FC = () => (
   <>
     <BrowserRouter>
       <Routes>
-        {publicRoutes.map((route) => (
-          <Route path={route.path} element={route.element} />
+        {publicRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
         ))}
 
-        {privateRoutes.map((route) => (
-          <Route path={route.path} element={route.element} />
+        {privateRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
         ))}
 
         <Route path="*" element={<p>There's nothing here: 404!</p>} />

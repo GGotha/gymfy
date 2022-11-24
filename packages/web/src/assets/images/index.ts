@@ -32,3 +32,7 @@ export { default as diamondIcon } from "./diamond.svg";
 export { default as goldIcon } from "./gold.svg";
 export { default as gymfyWithTextIcon } from "./logo_with_text.svg";
 export { default as gymfyWithoutTextIcon } from "./logo_without_text.svg";
+export { default as metamaskIcon } from "./metamask-fox.svg";
+export { default as coinbaseIcon } from "./coinbase.svg";
+export { default as trustwalletIcon } from "./trustwallet.png";
+export { default as binanceWalletIcon } from "./binancewallet.png";

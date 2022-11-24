@@ -53,7 +53,7 @@ const PlanScreen: React.FC = () => {
               <>
                 {sortByPlanPriceAndFormatAmount()!.map((plan) => (
                   <>
-                    <CardComponent width="w-[366px]" height="h-[445px]">
+                    <CardComponent size={{ height: "h-[445px]", width: "w-[366px]" }}>
                       <CardPlanComponent
                         id={plan.id}
                         name={`Plano ${plan.name}`}

@@ -1,16 +1,4 @@
-type ButtonProps = {
-  children: any;
-  hasBackgroundShadow?: boolean;
-  hasBounceAnimation?: boolean;
-  backgroundColor: string;
-  textColor?: string;
-  backgroundColorHover?: string;
-  width?: string;
-  height?: string;
-  borderRadius?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>;
-};
+import { ButtonProps } from "./Button.types";
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   children,

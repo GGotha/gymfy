@@ -2,7 +2,7 @@ import { NavbarComponent } from "~/components/Navbar";
 import { SidebarComponent } from "~/components/Sidebar";
 
 type MainScreenProps = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const MainScreen: React.FC<MainScreenProps> = ({ children }) => {

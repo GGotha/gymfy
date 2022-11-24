@@ -12,7 +12,7 @@ import {
   usdcoinIcon,
 } from "~/assets/images";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OptionSidebarComponent } from "~/components/OptionSidebar";
 
@@ -51,6 +51,7 @@ const SIDEBAR_LIST: Array<SidebarListProps> = [
 const SidebarComponent: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const navigate = useNavigate();
+  const id = useId();
 
   return (
     <>
@@ -73,7 +74,7 @@ const SidebarComponent: React.FC = () => {
               path={option.path}
             />
             {option.name === SidebarEnum.recharge || option.name === SidebarEnum.usdCoin ? (
-              <div className="border border-sidebarDivider w-full my-8" />
+              <div key={id} className="border border-sidebarDivider w-full my-8" />
             ) : (
               ""
             )}

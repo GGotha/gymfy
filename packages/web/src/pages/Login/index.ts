@@ -1,1 +1,1 @@
-export { default as LoginScreen } from "./Login.screen";
+export { default as LoginScreen } from "./Login.container";
