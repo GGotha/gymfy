@@ -3,7 +3,7 @@ import { AuthChecker } from "type-graphql";
 import { prisma } from "~/externals/orm";
 import { TOKEN_SECRET } from "./constants";
 
-type TokenPayloadType = {
+export type TokenPayloadType = {
   iat: number;
   exp: number;
   sub: {

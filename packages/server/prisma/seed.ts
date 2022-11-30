@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import { INCOMING, OUTGOING } from "../src/core/constants";
 
 const prisma = new PrismaClient();
 
@@ -48,7 +49,7 @@ async function main() {
     where: { id: "1" },
     update: {},
     create: {
-      name: "Incoming",
+      name: INCOMING,
     },
   });
 
@@ -56,7 +57,7 @@ async function main() {
     where: { id: "2" },
     update: {},
     create: {
-      name: "Outgoing",
+      name: OUTGOING,
     },
   });
 

@@ -5,6 +5,7 @@ import { Authorized, Ctx, Mutation, Resolver } from "type-graphql";
 import { Checkin as CheckinPrisma, Prisma, User as UserPrisma } from "@prisma/client";
 import { prisma } from "~/externals/orm";
 import { Checkin, Balance } from "~/graphql/models";
+import { INCOMING } from "~/core/constants";
 
 type DecideValueByPlanType = {
   brl_amount: number;
@@ -71,7 +72,7 @@ export class CheckinResolver {
 
   private async userEarnMoney(user: UserWithRolePlan) {
     const transactionType = await prisma.transactionType.findFirst({
-      where: { name: "Incoming" },
+      where: { name: INCOMING },
     });
 
     if (!transactionType) {
